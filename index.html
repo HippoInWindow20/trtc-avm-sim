@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AVM</title>
+    </head>
+
+    <body style="background: black;overflow: hidden;">
+        <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
+        <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
+            <div style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
+                <iframe style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
+            </div>
+            <div style="height: 90dvh;display: flex;width: calc((100vw - (90dvh * 4 / 3))/2);">
+                <iframe style="width: 100%;background: #333;border: none;">
+
+                </iframe>
+            </div>
+        </div>
+        <script>
+            function touchSound() {
+                console.log("playes")
+                document.getElementById("osc").play()
+            }
+        </script>
+    </body>
+
+</html>

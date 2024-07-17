@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <style>
+            .bigButton {
+                height: 90%;
+                aspect-ratio: 0.6724;
+                margin-top: 5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+
+            .smallButton1 {
+                height: 44%;
+                aspect-ratio: 1.5;
+                margin-top: 5%;
+                margin-bottom: 0.5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+
+            .smallButton2 {
+                height: 44%;
+                aspect-ratio: 1.5;
+                margin-top: 0.5%;
+                margin-bottom: 5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+            
+            .mainButton {
+                box-sizing: border-box;
+            }
+
+            .mainButton:active {
+                filter: brightness(0.5);
+            }
+            .lang {
+                height: 100%;
+                border: 0.5dvh solid white;
+                background: #9af2ff;
+                color: black;
+                aspect-ratio: 1.31;
+                margin-right: 0.5%;
+                border-radius: 1dvh;
+                font-size: 2.1dvh;
+                font-family: 'Arial',sans-serif;
+                box-sizing: border-box;
+                padding: 0;
+            }
+            .lang:active {
+                border: 0.5dvh solid yellow;
+            }
+        </style>
+    </head>
+
+    <body style="overflow: hidden;background: #49b4e2;">
+        <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
+            <div style="height: 15%;text-align: center;">
+                <img src="images/ic_title.svg" style="height: 100%;" />
+            </div>
+            <div style="height: 70%;display: flex;flex-direction: row;">
+                <div style="width: 50%;text-align: center;">
+                    <button class="mainButton bigButton" onclick="osc()">
+                        <img src="images/top_up.svg" style="height: 100%;" />
+                    </button>
+                </div>
+                <div style="width: 50%;text-align: center;" onclick="osc()">
+                    <button class="mainButton smallButton1" style="background: url(images/tpass.svg);background-size: 100%;">
+                    </button>
+                    <button class="mainButton smallButton2" onclick="osc()">
+                        <img src="images/ticket.svg" style="height: 100%;" />
+                    </button>
+                </div>
+            </div>
+            <div style="height: 8%;display: flex;">
+                <button class="lang" onclick="osc()">Español</button>
+                <button class="lang" onclick="osc()">Français</button>
+                <button class="lang" onclick="osc()">Deustch</button>
+                <button class="lang" onclick="osc()">Bahasa Indonesia</button>
+                <button class="lang" onclick="osc()">Tiếng Việt</button>
+                <button class="lang" onclick="osc()">ไทย</button>
+                <button class="lang" onclick="osc()">Bahasa Melayu</button>
+                <button class="lang" onclick="osc()">English</button>
+                <button class="lang" onclick="osc()">한국인</button>
+                <button class="lang" onclick="osc()">日本語</button>
+                <button class="lang" onclick="osc()">简中</button>
+                <button class="lang" onclick="osc()">繁中</button>
+            </div>
+            <div style="height: 7%;display: flex;flex-direction: row;">
+                <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
+                    <span style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/ v30</span>
+                </div>
+                <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
+                    <span id="date" style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+                </div>
+            </div>
+        </div>
+        <script>
+            function osc() {
+                window.parent.touchSound()
+            }
+
+            function twoNums (num) {
+                if (num.toString().length == 1){
+                    return "0" + num.toString()
+                }else {
+                    return num.toString()
+                }
+            }
+
+            setInterval(
+                function () {
+                    var d = new Date()
+                    document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+                }
+            ,1000)
+        </script>
+    </body>
+
+</html>
