@@ -27,19 +27,19 @@
         </div>
         <script>
             function touchSound() {
-                // document.getElementById("osc").play()
-                var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                var oscillator = audioCtx.createOscillator();
+                document.getElementById("osc").play()
+                // var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                // var oscillator = audioCtx.createOscillator();
 
-                oscillator.type = 'square';
-                oscillator.frequency.value = 2200; // value in hertz
-                oscillator.connect(audioCtx.destination);
-                oscillator.start();
+                // oscillator.type = 'square';
+                // oscillator.frequency.value = 2200; // value in hertz
+                // oscillator.connect(audioCtx.destination);
+                // oscillator.start();
 
-                setTimeout(
-                    function () {
-                        oscillator.stop();
-                    }, 100);
+                // setTimeout(
+                //     function () {
+                //         oscillator.stop();
+                //     }, 100);
             }
         </script>
     </body>
