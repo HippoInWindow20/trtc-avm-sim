@@ -14,6 +14,7 @@
 
     <body style="background: black;overflow: hidden;">
         <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
+        <audio id="narrator" hidden></audio>
         <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
             <div
                 style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
@@ -41,6 +42,10 @@
                 //         oscillator.stop();
                 //     }, 100);
             }
+            function narrate(type, name) {
+                document.getElementById("narrator").src = "audio/" + type + "/" + name + ".mp3"
+                document.getElementById("narrator").play()
+             }
         </script>
     </body>
 

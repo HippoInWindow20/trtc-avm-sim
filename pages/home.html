@@ -7,8 +7,9 @@
         <title>Home</title>
         <style>
             button {
-                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             }
+
             .bigButton {
                 height: 90%;
                 aspect-ratio: 0.6724;
@@ -37,7 +38,7 @@
                 background: #c9cacc;
                 border-radius: 2dvh;
             }
-            
+
             .mainButton {
                 box-sizing: border-box;
             }
@@ -45,6 +46,7 @@
             .mainButton:active {
                 filter: brightness(0.5);
             }
+
             .lang {
                 height: 100%;
                 border: 0.5dvh solid white;
@@ -55,10 +57,11 @@
                 margin-right: 0.5%;
                 border-radius: 1dvh;
                 font-size: 2.1dvh;
-                font-family: 'Arial',sans-serif;
+                font-family: 'Arial', sans-serif;
                 box-sizing: border-box;
                 padding: 0;
             }
+
             .lang:active {
                 border: 0.5dvh solid yellow;
             }
@@ -77,7 +80,8 @@
                     </button>
                 </div>
                 <div style="width: 50%;text-align: center;" onclick="osc()">
-                    <button class="mainButton smallButton1" style="background: url(images/tpass.svg);background-size: 100%;">
+                    <button class="mainButton smallButton1"
+                        style="background: url(images/tpass.svg);background-size: 100%;">
                     </button>
                     <button class="mainButton smallButton2" onclick="ticket()">
                         <img src="images/ticket.svg" style="height: 100%;" />
@@ -100,10 +104,13 @@
             </div>
             <div style="height: 7%;display: flex;flex-direction: row;">
                 <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
-                    <span style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/ v30</span>
+                    <span
+                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                        v30</span>
                 </div>
                 <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
-                    <span id="date" style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+                    <span id="date"
+                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
                 </div>
             </div>
         </div>
@@ -117,22 +124,27 @@
                 window.parent.touchSound()
             }
 
-            function twoNums (num) {
-                if (num.toString().length == 1){
+            function twoNums(num) {
+                if (num.toString().length == 1) {
                     return "0" + num.toString()
-                }else {
+                } else {
                     return num.toString()
                 }
             }
 
             setInterval(setDt, 1000)
-            function ticket () {
+            function ticket() {
                 osc()
                 setTimeout(
                     function () {
+                        setTimeout(
+                            function () {
+                                window.parent.narrate("process","select")
+                            }
+                            , 500)
                         window.location.href = "ticket.html"
                     }
-                ,500)
+                    , 500)
             }
         </script>
     </body>

@@ -104,7 +104,6 @@
     </head>
 
     <body style="overflow: hidden;background: url(images/bg.svg);background-size: 100%;">
-        <audio id="narrator" hidden></audio>
         <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
             <div style="height: 15%;text-align: left;">
                 <img src="images/sel.svg" style="height: 80%;" />
@@ -190,7 +189,6 @@
             </div>
         </div>
         <script>
-            document.getElementById('narrator').src = "../audio/process/select.mp3"
             setTimeout(
                 function () {
                     document.getElementById('narrator').play()
