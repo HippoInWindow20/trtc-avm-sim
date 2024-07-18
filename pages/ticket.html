@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <style>
+            button {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+
+            .bigButton {
+                height: 90%;
+                aspect-ratio: 0.6724;
+                margin-top: 5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+
+            .smallButton1 {
+                height: 44%;
+                aspect-ratio: 1.5;
+                margin-top: 5%;
+                margin-bottom: 0.5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+
+            .smallButton2 {
+                height: 44%;
+                aspect-ratio: 1.5;
+                margin-top: 0.5%;
+                margin-bottom: 5%;
+                border: 1dvh solid white;
+                background: #c9cacc;
+                border-radius: 2dvh;
+            }
+
+            .mainButton {
+                box-sizing: border-box;
+            }
+
+            .mainButton:active {
+                filter: brightness(0.5);
+            }
+
+            .lang {
+                height: 100%;
+                border: 0.5dvh solid white;
+                background: #9af2ff;
+                color: black;
+                aspect-ratio: 1.31;
+                margin-right: 0.5%;
+                border-radius: 1dvh;
+                font-size: 2.1dvh;
+                font-family: 'Arial', sans-serif;
+                box-sizing: border-box;
+                padding: 0;
+            }
+
+            .lang:active {
+                border: 0.5dvh solid yellow;
+            }
+
+            .btnBevel {
+                height: 40%;
+                aspect-ratio: 1.6;
+                border: 1dvh outset #bcd77e;
+                background: #bcd77e;
+                margin-top: 0.5dvh;
+                margin-bottom: 0.5dvh;
+                margin-left: 0.5dvh;
+                margin-right: 0.5dvh;
+            }
+
+            .shrink {
+                aspect-ratio: 1.2;
+            }
+
+            .sel {
+                border: 1dvh outset #efd344;
+                background: #efd344;
+            }
+
+            .btnCancel {
+                height: 80%;
+                aspect-ratio: 1;
+                border-radius: 100%;
+                border: none;
+                float: right;
+                background: url(images/cancel_btn.svg);
+                background-size: 100%;
+            }
+            .btnCancel:active {
+                background: url(images/cancel_btn_prs.svg);
+            }
+        </style>
+    </head>
+
+    <body style="overflow: hidden;background: url(images/bg.svg);background-size: 100%;">
+        <audio id="narrator" hidden></audio>
+        <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
+            <div style="height: 15%;text-align: left;">
+                <span style="
+                font-size: 5.3dvh;
+                font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                font-weight: 600;
+                color: #282472;
+            ">選擇票價與張數(限當日使用)</span>
+                <br>
+                <span style="
+                font-size: 3.5dvh;
+                font-family: Helvetica, Arial, sans-serif;
+                font-weight: 600;
+                color: #282472;
+            ">Select fare and number of tickets</span>
+            </div>
+            <div style="height: 15%;text-align: center;display: flex;flex-direction: row;">
+                <div style="height: 100%;width: 32.5%;text-align: left;">
+                    <span style="
+                    font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: green;
+                    padding-left: 7dvh;">營運中</span>
+                    <br>
+                    <span style="
+                        font-size: 2.5dvh;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-weight: 600;
+                        color: green;
+                        padding-left: 7dvh;
+                    ">In service</span>
+                </div>
+                <div style="height: 100%;width: 32.5%;text-align: left;">
+                    <span style="
+                    font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: green;
+                    padding-left: 7dvh;">不找鈔</span>
+                    <br>
+                    <span style="
+                        font-size: 2.5dvh;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-weight: 600;
+                        color: green;
+                        padding-left: 7dvh;
+                    ">No banknotes given</span>
+                </div>
+                <div style="height: 100%;width: 18%;text-align: left;">
+                    <span style="
+                    font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: #282472;
+                    padding-left: 1dvh;">應付金額</span>
+                    <br>
+                    <span style="
+                        font-size: 2.5dvh;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-weight: 600;
+                        color: #282472;
+                        padding-left: 1dvh;
+                    ">Fare Payable</span>
+                </div>
+                <div style="height: 100%;width: 15%;text-align: right;">
+                    <img src="images/20.svg" style="height: 65%;" />
+                    <img src="images/dollars.svg" style="height: 65%;" />
+                </div>
+            </div>
+            <div style="height: 50%;display: flex;flex-direction: column;text-align: left;">
+                <div style="width: 65%;background: #7bb2d9;">
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;float: left;
+                    color: #282472;">1. 單程票價(元)</span>
+                    <span style="font-size: 3.5dvh;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: 600;float: right;
+                    color: #282472;">Ticket price (NT)</span>
+                </div>
+                <div style="height: 45%;width: 65%;">
+                    <button class="btnBevel" onclick="osc()"><img src="images/20.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/25.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/30.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/35.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/40.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/45.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/50.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/55.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/60.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel" onclick="osc()"><img src="images/65.svg" style="height: 90%;" /></button>
+                </div>
+                <div style="width: 80%;background: #7bb2d9;">
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;float: left;
+                    color: #282472;">2. 張數(1張免選)</span>
+                    <span style="font-size: 3.5dvh;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: 600;float: right;
+                    color: #282472;">Number of tickets (if 2 or more)</span>
+                </div>
+                <div style="height: 45%;width: 100%;">
+                    <button class="btnBevel shrink sel" onclick="osc()"><img src="images/1.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/2.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/3.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/4.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/5.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/6.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/7.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/8.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/9.svg" style="height: 90%;" /></button>
+                    <button class="btnBevel shrink" onclick="osc()"><img src="images/10.svg" style="height: 90%;" /></button>
+                </div>
+            </div>
+            <div style="height: 15.3%;display: flex;width: 85%;">
+                <div style="height: 100%;display: flex;width: 70%;">
+                    <img src="images/bills_acc.svg" style="height: 80%;float: left;" />
+                </div>
+                <div style="height: 100%;display: flex;width: 30%;flex-direction: row-reverse;">
+                    <button class="btnCancel" onclick="goBack()"></button>
+
+                </div>
+            </div>
+            <div style="height: 5.5%;display: flex;flex-direction: row;">
+                <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
+                    <span
+                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                        v30</span>
+                </div>
+                <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
+                    <span id="date"
+                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('narrator').src = "../audio/process/select.mp3"
+            setTimeout(
+                function () {
+                    document.getElementById('narrator').play()
+                },1000
+            )
+            
+            function setDt() {
+                var d = new Date()
+                document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+            }
+            setDt()
+            function osc() {
+                window.parent.touchSound()
+            }
+
+            function twoNums(num) {
+                if (num.toString().length == 1) {
+                    return "0" + num.toString()
+                } else {
+                    return num.toString()
+                }
+            }
+            function goBack () {
+                osc()
+                setTimeout(
+                    function () {
+                        window.location.href = "home.html"
+                    }
+                ,500)
+            }
+            setInterval(setDt, 1000)
+        </script>
+    </body>
+
+</html>

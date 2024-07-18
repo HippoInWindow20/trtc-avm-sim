@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="200"
+   viewBox="0 0 26.458333 52.916666"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="dollars.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8578563"
+     inkscape:cx="146.9633"
+     inkscape:cy="82.929291"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="8.3979029"
+       y="14.69633"
+       width="83.979029"
+       height="96.225971"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="font-size:56px;line-height:0.45;font-family:'Noto Sans TC';-inkscape-font-specification:'Noto Sans TC';white-space:pre"
+       d="m 41.046437,24.105265 h 4.256001 v 21.616 q 0,1.512 0.503999,1.96 0.504001,0.392 2.128001,0.392 0.391999,0 1.343999,0 1.008,0 2.184,0 1.176001,0 2.184001,0 1.064,0 1.567999,0 1.176,0 1.736,-0.728 0.560001,-0.784 0.784,-2.912 0.28,-2.184 0.336,-6.496 0.56,0.392 1.232001,0.784 0.671999,0.336 1.4,0.616 0.783999,0.28 1.344,0.448 -0.224,4.816 -0.84,7.504 -0.56,2.632 -1.904,3.696 -1.288001,1.064 -3.752001,1.064 -0.392,0 -1.567999,0 -1.176001,0 -2.520001,0 -1.344,0 -2.52,0 -1.12,0 -1.511999,0 -2.464001,0 -3.92,-0.56 -1.400001,-0.56 -1.960001,-1.96 -0.504,-1.344 -0.504,-3.752 z m -29.343999,-2.52 h 49.448 v 4.144 h -49.448 z M 16.630437,5.9052653 h 39.76 v 4.032 h -39.76 z m 9.408,18.8719997 h 4.48 q -0.391999,4.704 -1.176,8.904 -0.784,4.2 -2.575999,7.84 -1.736001,3.584 -4.928001,6.496 -3.135999,2.912 -8.119999,4.872 -0.336,-0.728 -1.120001,-1.736 -0.783999,-0.952 -1.511999,-1.512 4.592,-1.736 7.391999,-4.312 2.856,-2.576 4.368,-5.768 1.568001,-3.248 2.24,-6.944 0.672,-3.752 0.952,-7.84 z"
+       id="text1"
+       transform="matrix(0.46965232,0,0,0.46965232,-3.9443455,-0.38102364)"
+       aria-label="元" />
+    <path
+       style="font-size:23.9401px;line-height:0.45;font-family:'Noto Sans TC';-inkscape-font-specification:'Noto Sans TC';stroke-width:0.435274"
+       d="M 0.99490777,43.042961 V 25.494868 H 3.2452771 l 6.4159468,11.060326 1.8912681,3.614955 h 0.1197 q -0.1197,-1.316705 -0.215461,-2.753111 -0.09576,-1.436406 -0.09576,-2.800992 V 25.494868 H 13.4677 V 43.042961 H 11.19339 L 4.8013836,31.958695 2.9101158,28.36768 h -0.09576 q 0.07182,1.316705 0.1675807,2.705231 0.09576,1.364586 0.09576,2.753112 v 9.216938 z m 20.94757623,0 V 27.362196 h -5.314702 v -1.867328 h 12.855834 v 1.867328 h -5.314702 v 15.680765 z"
+       id="text2"
+       transform="scale(0.86809761,1.1519442)"
+       aria-label="NT" />
+  </g>
+</svg>

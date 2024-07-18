@@ -78,7 +78,7 @@
                 <div style="width: 50%;text-align: center;" onclick="osc()">
                     <button class="mainButton smallButton1" style="background: url(images/tpass.svg);background-size: 100%;">
                     </button>
-                    <button class="mainButton smallButton2" onclick="osc()">
+                    <button class="mainButton smallButton2" onclick="ticket()">
                         <img src="images/ticket.svg" style="height: 100%;" />
                     </button>
                 </div>
@@ -107,6 +107,11 @@
             </div>
         </div>
         <script>
+            function setDt() {
+                var d = new Date()
+                document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+            }
+            setDt()
             function osc() {
                 window.parent.touchSound()
             }
@@ -119,12 +124,15 @@
                 }
             }
 
-            setInterval(
-                function () {
-                    var d = new Date()
-                    document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
-                }
-            ,1000)
+            setInterval(setDt, 1000)
+            function ticket () {
+                osc()
+                setTimeout(
+                    function () {
+                        window.location.href = "ticket.html"
+                    }
+                ,500)
+            }
         </script>
     </body>
 
