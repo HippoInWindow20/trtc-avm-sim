@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AVM</title>
         <style>
-            body {
+            button {
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
             }
         </style>
@@ -32,7 +32,7 @@
                 var oscillator = audioCtx.createOscillator();
 
                 oscillator.type = 'square';
-                oscillator.frequency.value = 550; // value in hertz
+                oscillator.frequency.value = 1100; // value in hertz
                 oscillator.connect(audioCtx.destination);
                 oscillator.start();
 
