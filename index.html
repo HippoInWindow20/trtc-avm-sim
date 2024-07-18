@@ -10,7 +10,8 @@
     <body style="background: black;overflow: hidden;">
         <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
         <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
-            <div style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
+            <div
+                style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
                 <iframe style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
             </div>
             <div style="height: 90dvh;display: flex;width: calc((100vw - (90dvh * 4 / 3))/2);">
@@ -21,8 +22,19 @@
         </div>
         <script>
             function touchSound() {
-                console.log("playes")
-                document.getElementById("osc").play()
+                // document.getElementById("osc").play()
+                var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                var oscillator = audioCtx.createOscillator();
+
+                oscillator.type = 'square';
+                oscillator.frequency.value = 550; // value in hertz
+                oscillator.connect(audioCtx.destination);
+                oscillator.start();
+
+                setTimeout(
+                    function () {
+                        oscillator.stop();
+                    }, 100);
             }
         </script>
     </body>
