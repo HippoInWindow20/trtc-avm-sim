@@ -92,13 +92,29 @@
                 border-radius: 100%;
                 border: none;
                 float: right;
-                background: url(images/returnl_btn.svg);
+                background: url(images/return_btn.svg);
                 background-size: 100%;
                 font-size: 0;
             }
 
             .btnCancel:active {
-                background: url(images/returnl_btn_prs.svg);
+                background: url(images/return_btn_prs.svg);
+                background-size: 100%;
+            }
+
+            .btnCancelRed {
+                height: 80%;
+                aspect-ratio: 1;
+                border-radius: 100%;
+                border: none;
+                float: right;
+                background: url(images/cancel_btn.svg);
+                background-size: 100%;
+                font-size: 0;
+            }
+
+            .btnCancelRed:active {
+                background: url(images/cancel_btn_prs.svg);
                 background-size: 100%;
             }
         </style>
@@ -114,10 +130,10 @@
                     <img src="images/notice.svg" style="height: 80%;" />
                 </div>
                 <div style="height: 100%;width: 18%;text-align: left;">
-                    <img src="images/fare_notice.svg" style="height: 70%;" />
+                    <img src="images/fare_notice.svg" style="height: 65%;" />
                 </div>
                 <div id="fare_dp" style="height: 100%;width: 15%;text-align: right;display: none;">
-                    <img id="fare_num" src="images/20.svg" style="height: 65%;" />
+                    <span id="fare_num" style="font-size: 8dvh;font-weight: 700;font-family: 'Helvetica', sans-serif;" ></span>
                     <img src="images/dollars.svg" style="height: 65%;" />
                 </div>
             </div>
@@ -193,8 +209,8 @@
                     <img src="images/bills_acc.svg" style="height: 80%;float: left;" />
                 </div>
                 <div style="height: 100%;display: flex;width: 30%;flex-direction: row-reverse;">
-                    <button class="btnCancel" onclick="goBack()"></button>
-
+                    <button id="btnReturn" class="btnCancel" onclick="goBack()"></button>
+                    <button id="btnCancel" style="display: none;" class="btnCancelRed" onclick="cancel()"></button>
                 </div>
             </div>
             <div style="height: 5.5%;display: flex;flex-direction: row;">
@@ -210,6 +226,8 @@
             </div>
         </div>
         <script>
+            var setPrice = undefined
+            var setQty = 1
 
             function setDt() {
                 var d = new Date()
@@ -237,7 +255,7 @@
             }
 
             function selPrice(price) {
-                document.getElementById("fare_num").src = "images/" + price + ".svg"
+                document.getElementById("fare_num").innerHTML = price * setQty
                 document.getElementById("fare_dp").style.display = null
                 osc()
                 var coll = document.getElementsByClassName("btnBevel price")
@@ -245,6 +263,9 @@
                     coll[i].classList.remove("sel")
                 }
                 document.getElementById("p" + price).classList.add("sel")
+                setPrice = price
+                removeReturn()
+                confirm()
             }
             function selQty(quantity) {
                 osc()
@@ -253,8 +274,51 @@
                     coll[i].classList.remove("sel")
                 }
                 document.getElementById("q" + quantity).classList.add("sel")
+                document.getElementById("fare_num").innerHTML = setPrice * quantity
+                setQty = quantity
+                removeReturn()
+                confirm()
             }
             setInterval(setDt, 1000)
+
+            var x
+            var y
+            //Stolen code
+            function confirm() {
+                clearInterval(x)
+                clearInterval(y)
+                var arr = []
+                if (setPrice !== undefined) {
+                    window.parent.narrate("price",setPrice)
+                    x = setTimeout(function () { window.parent.narrate("quantity",setQty) },2500)
+                    y = setTimeout(function () { window.parent.narrate("process","insert_coin") },5000)
+                } else {
+                    window.parent.narrate("quantity",setQty)
+                }
+            }
+
+            function cancel () {
+                osc()
+                var coll = document.getElementsByClassName("btnBevel shrink")
+                for (var i = 0; i < coll.length; i++) {
+                    coll[i].classList.remove("sel")
+                }
+                document.getElementById("q1").classList.add("sel")
+                setQty = 1
+                document.getElementById("fare_dp").style.display = "none"
+                var coll = document.getElementsByClassName("btnBevel price")
+                for (var i = 0; i < coll.length; i++) {
+                    coll[i].classList.remove("sel")
+                }
+                setPrice = undefined
+                document.getElementById("btnCancel").style.display = "none"
+                document.getElementById("btnReturn").style.display = null
+            }
+
+            function removeReturn () {
+                document.getElementById("btnCancel").style.display = null
+                document.getElementById("btnReturn").style.display = "none"
+            }
         </script>
     </body>
 
