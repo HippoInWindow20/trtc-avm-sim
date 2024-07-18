@@ -96,6 +96,7 @@
                 background-size: 100%;
                 font-size: 0;
             }
+
             .btnCancel:active {
                 background: url(images/returnl_btn_prs.svg);
                 background-size: 100%;
@@ -115,8 +116,8 @@
                 <div style="height: 100%;width: 18%;text-align: left;">
                     <img src="images/fare_notice.svg" style="height: 70%;" />
                 </div>
-                <div style="height: 100%;width: 15%;text-align: right;">
-                    <img src="images/20.svg" style="height: 65%;" />
+                <div id="fare_dp" style="height: 100%;width: 15%;text-align: right;display: none;">
+                    <img id="fare_num" src="images/20.svg" style="height: 65%;" />
                     <img src="images/dollars.svg" style="height: 65%;" />
                 </div>
             </div>
@@ -132,17 +133,27 @@
                     color: #282472;">Ticket price (NT)</span>
                 </div>
                 <div style="height: 45%;width: 65%;">
-                    <button class="btnBevel" onclick="osc()"><img src="images/20.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/25.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/30.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/35.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/40.svg" style="height: 90%;" /></button>
+                    <button id="p20" class="btnBevel price" onclick="selPrice(20)"><img src="images/20.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p25" class="btnBevel price" onclick="selPrice(25)"><img src="images/25.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p30" class="btnBevel price" onclick="selPrice(30)"><img src="images/30.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p35" class="btnBevel price" onclick="selPrice(35)"><img src="images/35.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p40" class="btnBevel price" onclick="selPrice(40)"><img src="images/40.svg"
+                            style="height: 90%;" /></button>
                     <br>
-                    <button class="btnBevel" onclick="osc()"><img src="images/45.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/50.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/55.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/60.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel" onclick="osc()"><img src="images/65.svg" style="height: 90%;" /></button>
+                    <button id="p45" class="btnBevel price" onclick="selPrice(45)"><img src="images/45.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p50" class="btnBevel price" onclick="selPrice(50)"><img src="images/50.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p55" class="btnBevel price" onclick="selPrice(55)"><img src="images/55.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p60" class="btnBevel price" onclick="selPrice(60)"><img src="images/60.svg"
+                            style="height: 90%;" /></button>
+                    <button id="p65" class="btnBevel price" onclick="selPrice(65)"><img src="images/65.svg"
+                            style="height: 90%;" /></button>
                 </div>
                 <div style="width: 80%;background: #7bb2d9;">
                     <span style="font-size: 4dvh;
@@ -155,16 +166,26 @@
                     color: #282472;">Number of tickets (if 2 or more)</span>
                 </div>
                 <div style="height: 45%;width: 100%;">
-                    <button class="btnBevel shrink sel" onclick="osc()"><img src="images/1.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/2.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/3.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/4.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/5.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/6.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/7.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/8.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/9.svg" style="height: 90%;" /></button>
-                    <button class="btnBevel shrink" onclick="osc()"><img src="images/10.svg" style="height: 90%;" /></button>
+                    <button id="q1" class="btnBevel shrink sel" onclick="selQty(1)"><img src="images/1.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q2" class="btnBevel shrink" onclick="selQty(2)"><img src="images/2.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q3" class="btnBevel shrink" onclick="selQty(3)"><img src="images/3.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q4" class="btnBevel shrink" onclick="selQty(4)"><img src="images/4.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q5" class="btnBevel shrink" onclick="selQty(5)"><img src="images/5.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q6" class="btnBevel shrink" onclick="selQty(6)"><img src="images/6.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q7" class="btnBevel shrink" onclick="selQty(7)"><img src="images/7.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q8" class="btnBevel shrink" onclick="selQty(8)"><img src="images/8.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q9" class="btnBevel shrink" onclick="selQty(9)"><img src="images/9.svg"
+                            style="height: 90%;" /></button>
+                    <button id="q10" class="btnBevel shrink" onclick="selQty(10)"><img src="images/10.svg"
+                            style="height: 90%;" /></button>
                 </div>
             </div>
             <div style="height: 15.3%;display: flex;width: 85%;">
@@ -179,22 +200,17 @@
             <div style="height: 5.5%;display: flex;flex-direction: row;">
                 <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
                     <span
-                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                        style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
                         v30</span>
                 </div>
                 <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
                     <span id="date"
-                        style="font-size: 4dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+                        style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
                 </div>
             </div>
         </div>
         <script>
-            setTimeout(
-                function () {
-                    document.getElementById('narrator').play()
-                },1000
-            )
-            
+
             function setDt() {
                 var d = new Date()
                 document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
@@ -211,13 +227,32 @@
                     return num.toString()
                 }
             }
-            function goBack () {
+            function goBack() {
                 osc()
                 setTimeout(
                     function () {
                         window.location.href = "home.html"
                     }
-                ,500)
+                    , 500)
+            }
+
+            function selPrice(price) {
+                document.getElementById("fare_num").src = "images/" + price + ".svg"
+                document.getElementById("fare_dp").style.display = null
+                osc()
+                var coll = document.getElementsByClassName("btnBevel price")
+                for (var i = 0; i < coll.length; i++) {
+                    coll[i].classList.remove("sel")
+                }
+                document.getElementById("p" + price).classList.add("sel")
+            }
+            function selQty(quantity) {
+                osc()
+                var coll = document.getElementsByClassName("btnBevel shrink")
+                for (var i = 0; i < coll.length; i++) {
+                    coll[i].classList.remove("sel")
+                }
+                document.getElementById("q" + quantity).classList.add("sel")
             }
             setInterval(setDt, 1000)
         </script>
