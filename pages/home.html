@@ -135,13 +135,9 @@
             setInterval(setDt, 1000)
             function ticket() {
                 osc()
+                window.parent.narrate("process","select")
                 setTimeout(
                     function () {
-                        setTimeout(
-                            function () {
-                                window.parent.narrate("process","select")
-                            }
-                            , 500)
                         window.location.href = "ticket.html"
                     }
                     , 500)
