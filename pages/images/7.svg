@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="100"
+   width="70"
    height="100"
-   viewBox="0 0 26.458332 26.458332"
+   viewBox="0 0 18.520833 26.458332"
    version="1.1"
    id="svg1"
    sodipodi:docname="7.svg"
@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      inkscape:zoom="2.8578563"
      inkscape:cx="-10.847291"
-     inkscape:cy="-27.293184"
+     inkscape:cy="-27.293185"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="1912"
@@ -59,7 +59,7 @@
      id="layer1">
     <path
        style="font-weight:bold;font-size:32.6359px;line-height:0.45;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Bold';stroke-width:0.593378"
-       d="M 21.176008,2.0024179 H 5.5760485 v 4.177395 H 16.476439 C 14.485649,8.2032386 12.72331,11.107834 11.156787,14.893598 9.590264,18.679362 8.8070025,21.910316 8.8070025,24.651731 H 13.60448 c 0.228451,-3.916307 0.913805,-7.343077 2.056061,-10.280308 1.142257,-2.93723 2.969867,-5.7765536 5.482831,-8.550605 z"
+       d="M 16.942672,2.0024179 H 1.3427149 v 4.177395 H 12.243103 C 10.252313,8.2032386 8.4899749,11.107834 6.9234528,14.893598 5.3569304,18.679362 4.5736689,21.910316 4.5736689,24.651731 h 4.7974757 c 0.2284507,-3.916307 0.9138044,-7.343077 2.0560604,-10.280308 1.142257,-2.93723 2.969867,-5.7765536 5.482831,-8.550605 z"
        id="text7"
        aria-label="7" />
   </g>
