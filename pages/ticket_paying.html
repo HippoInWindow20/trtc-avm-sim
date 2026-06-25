@@ -296,13 +296,6 @@
         const params = new URLSearchParams(window.location.search);
         setPrice = parseInt(params.get("price"))
         setQty = parseInt(params.get("qty"))
-        paid = parseInt(params.get("paid"))
-        if (setPrice * setQty - paid >= 0) {
-            displayFare(setPrice * setQty - paid)
-        } else {
-            displayFare(0)
-        }
-        displayPaid(paid)
         document.getElementById("ticket_price").src = `images/${setPrice}.svg`
         document.getElementById("qty").src = `images/${setQty}.svg`
 
@@ -326,6 +319,9 @@
             }
             displayPaid(paid)
         }
+
+        
+        insertAmount(parseInt(params.get("paid")))
     </script>
 </body>
 
