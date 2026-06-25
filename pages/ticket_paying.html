@@ -301,9 +301,10 @@
 
         var dispenseTicket
         function insertAmount(amount) {
-            if (amount < 0)
+            var sanitisedAmount = parseInt(amount)
+            if (sanitisedAmount < 0)
                 return
-            paid = paid + amount
+            paid = paid + sanitisedAmount
             if (setPrice * setQty - paid > 0) {
                 displayFare(setPrice * setQty - paid)
             } else {
@@ -314,8 +315,17 @@
                     dispensed++
                     document.getElementById("sold_qty").src = `images/${dispensed}_w.svg`
                     if (dispensed >= setQty) {
-                        window.parent.narrate("process", "get_ticket_change")
+                        setTimeout(
+                            function () {  
+                                window.parent.narrate("process", "get_ticket_change")
+                            }, 1000
+                        )
                         clearInterval(dispenseTicket)
+                        setTimeout(
+                            function () {
+                                window.location.href = "home.html"
+                            }, 6000
+                        )
                     }
                 }, 1000)
             }

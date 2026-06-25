@@ -15,51 +15,55 @@
     <body style="background: black;overflow: hidden;">
         <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
         <audio id="narrator" hidden></audio>
+        <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">Open tools</button>
         <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
             <div
                 style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
-                <iframe style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
-            </div>
-            <div style="height: 90dvh;display: flex;width: calc((100vw - (90dvh * 4 / 3))/2);">
-                <iframe style="width: 100%;background: #333;border: none;">
-
-                </iframe>
+                <iframe id="screen" style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
             </div>
         </div>
-        <dialog>
+        <dialog id="tools">
             <h1>Card sensor</h1>
             <input type="number" />
             <button>Place card</button>
             <button>Remove card</button>
             <br>
             <h1>Input money</h1>
-            <input type="number" />
-            <button>Input</button>
+            <input id="insert_amount" type="number" />
+            <button onclick="insertAmount(document.getElementById('insert_amount').value)">Input</button>
+            <br>
+            <br>
+            <button onclick="triggerDialog(false)" style="padding: 10px;">Close</button>
         </dialog>
         <script>
             function touchSound() {
                 document.getElementById("osc").play()
-                // var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                // var oscillator = audioCtx.createOscillator();
-
-                // oscillator.type = 'square';
-                // oscillator.frequency.value = 2200; // value in hertz
-                // oscillator.connect(audioCtx.destination);
-                // oscillator.start();
-
-                // setTimeout(
-                //     function () {
-                //         oscillator.stop();
-                //     }, 100);
             }
             function narrate(type, name) {
                 document.getElementById("narrator").src = "audio/" + type + "/" + name + ".mp3"
                 document.getElementById("narrator").play()
-             }
+            }
 
-             // Machine functions
+            function triggerDialog(open) {
+                const myDialog = document.querySelector('#tools')
+                if (open) {
+                    myDialog.showModal()
+                } else {
+                    myDialog.close()
+                }
+            }
 
-             // Single-journey
+            // Machine functions
+            function insertAmount(amount) {
+                try {
+                    document.getElementById("screen").contentWindow.insertAmount(amount)
+                }catch(e) {
+                    alert("Illegal action")
+                }
+                triggerDialog(false)
+            }
+
+            // Single-journey
         </script>
     </body>
 
