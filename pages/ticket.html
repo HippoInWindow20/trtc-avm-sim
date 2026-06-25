@@ -328,6 +328,8 @@
             }
 
             function insertAmount(amount) {
+                if (amount < 0)
+                    return
                 window.location.href = `ticket_paying.html?price=${setPrice}&qty=${setQty}&paid=${amount}`
             }
         </script>

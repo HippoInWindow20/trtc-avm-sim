@@ -301,6 +301,8 @@
 
         var dispenseTicket
         function insertAmount(amount) {
+            if (amount < 0)
+                return
             paid = paid + amount
             if (setPrice * setQty - paid > 0) {
                 displayFare(setPrice * setQty - paid)
@@ -320,7 +322,7 @@
             displayPaid(paid)
         }
 
-        
+
         insertAmount(parseInt(params.get("paid")))
     </script>
 </body>
