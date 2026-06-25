@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        button {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .bigButton {
+            height: 90%;
+            aspect-ratio: 0.6724;
+            margin-top: 5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .smallButton1 {
+            height: 44%;
+            aspect-ratio: 1.5;
+            margin-top: 5%;
+            margin-bottom: 0.5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .smallButton2 {
+            height: 44%;
+            aspect-ratio: 1.5;
+            margin-top: 0.5%;
+            margin-bottom: 5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .mainButton {
+            box-sizing: border-box;
+        }
+
+        .mainButton:active {
+            filter: brightness(0.5);
+        }
+
+        .lang {
+            height: 100%;
+            border: 0.5dvh solid white;
+            background: #9af2ff;
+            color: black;
+            aspect-ratio: 1.31;
+            margin-right: 0.5%;
+            border-radius: 1dvh;
+            font-size: 2.1dvh;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .lang:active {
+            border: 0.5dvh solid yellow;
+        }
+
+        .btnBevel {
+            font-size: 0;
+            height: 40%;
+            aspect-ratio: 1.6;
+            border: 1dvh outset #bcd77e;
+            background: #bcd77e;
+            margin-top: 0.5dvh;
+            margin-bottom: 0.5dvh;
+            margin-left: 0.2dvh;
+            margin-right: 0.2dvh;
+            box-shadow: 4px 3px 0px 0px black;
+            padding: 0;
+        }
+
+        .shrink {
+            aspect-ratio: 1.2;
+        }
+
+        .sel {
+            border: 1dvh outset #efd344;
+            background: #efd344;
+        }
+
+        .btnCancel {
+            height: 80%;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            border: none;
+            float: right;
+            background: url(images/return_btn.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnCancel:active {
+            background: url(images/return_btn_prs.svg);
+            background-size: 100%;
+        }
+
+        .btnCancelRed {
+            height: 80%;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            border: none;
+            float: right;
+            background: url(images/cancel_btn.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnCancelRed:active {
+            background: url(images/cancel_btn_prs.svg);
+            background-size: 100%;
+        }
+
+        .boxBlue {
+            background: blue;
+            border-color: blue;
+        }
+
+        .btnWide {
+            aspect-ratio: 1.8;
+        }
+    </style>
+</head>
+
+<body style="overflow: hidden;background: url(images/bg2.svg);background-size: 100%;">
+    <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
+        <div style="height: 15%;text-align: left;">
+            <img src="images/tic_pay.svg" style="height: 80%;" />
+        </div>
+        <div style="height: 15%;text-align: center;display: flex;flex-direction: row;">
+            <div style="height: 100%;width: 65%;text-align: left;">
+                <img src="images/notice2.svg" style="height: 80%;" />
+            </div>
+            <div style="height: 100%;width: 13%;text-align: left;">
+                <img src="images/fare_notice.svg" style="height: 55%;" />
+            </div>
+            <div id="fare_dp" style="height: 100%;width: 20%;text-align: right;display: none;">
+            </div>
+        </div>
+        <div style="height: 50%;display: flex;flex-direction: row;text-align: left;">
+            <div style="width: 50%;">
+                <div
+                    style="width: 100%;background: #7bb2d9;display: flex;align-items: flex-end;justify-content: space-between;">
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;float: left;
+                    color: #282472;">1. 單程票價(元)</span>
+                    <span style="font-size: 3dvh;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: 600;float: right;
+                    color: #282472;">Ticket price (NT)</span>
+                </div>
+                <div style="height: 23%;width: 100%;">
+                    <button id="p20" class="btnBevel price sel btnWide" style="height:70%;float: right;">
+                        <img id="ticket_price" src="images/20.svg" style="height: 90%;" />
+                        <img src="images/dollars.svg" style="height: 90%;" />
+                    </button>
+                </div>
+                <div
+                    style="width: 100%;background: #7bb2d9;display: flex;align-items: flex-end;justify-content: space-between;">
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;float: left;
+                    color: #282472;">2. 張數</span>
+                    <span style="font-size: 3dvh;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: 600;float: right;
+                    color: #282472;">Number of tickets</span>
+                </div>
+                <div style="height: 23%;width: 100%;">
+                    <button class="btnBevel price sel" style="height: 70%;float: right"><img id="qty" src="images/1.svg"
+                            style="height: 90%;" /></button>
+                </div>
+
+                <div
+                    style="width: 100%;background: #7bb2d9;display: flex;align-items: flex-end;justify-content: space-between;">
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;float: left;
+                    color: #282472;">3. 已發售張數</span>
+                    <span style="font-size: 3dvh;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: 600;float: right;
+                    color: #282472;">Number of tickets issued</span>
+                </div>
+                <div style="height: 23%;width: 100%;">
+                    <button class="btnBevel price sel boxBlue" style="height: 70%;float: right"><img id="sold_qty"
+                            src="images/0_w.svg" style="height: 90%;" /></button>
+                </div>
+            </div>
+            <div style="width: 50%;">
+                <img src="images/insert.svg" style="width: 100%;top: 40%;position: relative;" />
+            </div>
+        </div>
+        <div style="height: 15.3%;display: flex;width: 85%;">
+            <div style="height: 100%;display: flex;width: 70%;">
+                <img src="images/bills_acc.svg" style="height: 80%;float: left;" />
+            </div>
+            <div style="height: 100%;display: flex;width: 30%;flex-direction: row-reverse;">
+                <button id="btnCancel" class="btnCancelRed" onclick="cancel()"></button>
+            </div>
+        </div>
+        <div style="height: 5.5%;display: flex;flex-direction: row;">
+            <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
+                <span
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                    v30</span>
+            </div>
+            <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
+                <span id="date"
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+            </div>
+        </div>
+    </div>
+    <div style="width: 32.5dvw;height: 13dvh;position: absolute;top: 32dvh;left: 65dvw;display: flex;">
+        <div style="height: 100%;width: 50%;text-align: left;">
+            <img src="images/paid_amount.svg" style="height: 60%;" />
+        </div>
+        <div id="paid_fare_dp" style="height: 100%;width: 50%;text-align: right;display: none;">
+        </div>
+    </div>
+    <script>
+        var setPrice = undefined
+        var setQty = 1
+        var paid = 0
+
+        function setDt() {
+            var d = new Date()
+            document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+        }
+        setDt()
+        function osc() {
+            window.parent.touchSound()
+        }
+
+        function twoNums(num) {
+            if (num.toString().length == 1) {
+                return "0" + num.toString()
+            } else {
+                return num.toString()
+            }
+        }
+        function goBack() {
+            osc()
+            setTimeout(
+                function () {
+                    window.location.href = "home.html"
+                }
+                , 500)
+        }
+
+        setInterval(setDt, 1000)
+
+
+        function cancel() {
+            osc()
+            window.location.href = "home.html"
+        }
+
+        function removeReturn() {
+            document.getElementById("btnCancel").style.display = null
+            document.getElementById("btnReturn").style.display = "none"
+        }
+
+        function displayFare(fare) {
+            document.getElementById("fare_dp").innerHTML = ""
+            var fareStr = fare.toString()
+            for (var i = 0; i < fareStr.length; i++) {
+                document.getElementById("fare_dp").innerHTML += "<img src='images/" + fareStr[i] + ".svg' style='height: 50%;' />"
+            }
+            document.getElementById("fare_dp").innerHTML +=
+                "<img src='images/dollars.svg' style='height: 50%;' />"
+            document.getElementById("fare_dp").style.display = null
+        }
+        function displayPaid(fare) {
+            document.getElementById("paid_fare_dp").innerHTML = ""
+            var fareStr = fare.toString()
+            for (var i = 0; i < fareStr.length; i++) {
+                document.getElementById("paid_fare_dp").innerHTML += "<img src='images/" + fareStr[i] + ".svg' style='height: 60%;' />"
+            }
+            document.getElementById("paid_fare_dp").innerHTML +=
+                "<img src='images/dollars.svg' style='height: 60%;' />"
+            document.getElementById("paid_fare_dp").style.display = null
+        }
+
+        //Initialisation
+        const params = new URLSearchParams(window.location.search);
+        setPrice = parseInt(params.get("price"))
+        setQty = parseInt(params.get("qty"))
+        paid = parseInt(params.get("paid"))
+        if (setPrice * setQty - paid >= 0) {
+            displayFare(setPrice * setQty - paid)
+        } else {
+            displayFare(0)
+        }
+        displayPaid(paid)
+        document.getElementById("ticket_price").src = `images/${setPrice}.svg`
+        document.getElementById("qty").src = `images/${setQty}.svg`
+
+        var dispenseTicket
+        function insertAmount(amount) {
+            paid = paid + amount
+            if (setPrice * setQty - paid > 0) {
+                displayFare(setPrice * setQty - paid)
+            } else {
+                displayFare(0)
+                window.parent.narrate("process", "processing")
+                var dispensed = 0
+                dispenseTicket = setInterval(function () {
+                    dispensed++
+                    document.getElementById("sold_qty").src = `images/${dispensed}_w.svg`
+                    if (dispensed >= setQty) {
+                        window.parent.narrate("process", "get_ticket_change")
+                        clearInterval(dispenseTicket)
+                    }
+                }, 1000)
+            }
+            displayPaid(paid)
+        }
+    </script>
+</body>
+
+</html>
