@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        button {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .bigButton {
+            height: 90%;
+            aspect-ratio: 0.6724;
+            margin-top: 5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .smallButton1 {
+            height: 44%;
+            aspect-ratio: 1.5;
+            margin-top: 5%;
+            margin-bottom: 0.5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .smallButton2 {
+            height: 44%;
+            aspect-ratio: 1.5;
+            margin-top: 0.5%;
+            margin-bottom: 5%;
+            border: 1dvh solid white;
+            background: #c9cacc;
+            border-radius: 2dvh;
+        }
+
+        .mainButton {
+            box-sizing: border-box;
+        }
+
+        .mainButton:active {
+            filter: brightness(0.5);
+        }
+
+        .lang {
+            height: 100%;
+            border: 0.5dvh solid white;
+            background: #9af2ff;
+            color: black;
+            aspect-ratio: 1.31;
+            margin-right: 0.5%;
+            border-radius: 1dvh;
+            font-size: 2.1dvh;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .lang:active {
+            border: 0.5dvh solid yellow;
+        }
+
+        .btnBevel {
+            font-size: 0;
+            height: 40%;
+            aspect-ratio: 1.6;
+            border: 1dvh outset #bcd77e;
+            background: #bcd77e;
+            margin-top: 0.5dvh;
+            margin-bottom: 0.5dvh;
+            margin-left: 0.2dvh;
+            margin-right: 0.2dvh;
+        }
+
+        .shrink {
+            aspect-ratio: 1.2;
+        }
+
+        .sel {
+            border: 1dvh outset #efd344;
+            background: #efd344;
+        }
+
+        .btnCancel {
+            height: 80%;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            border: none;
+            float: right;
+            background: url(images/return_btn.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnCancel:active {
+            background: url(images/return_btn_prs.svg);
+            background-size: 100%;
+        }
+
+        .btnCancelRed {
+            height: 80%;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            border: none;
+            float: right;
+            background: url(images/cancel_btn.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnCancelRed:active {
+            background: url(images/cancel_btn_prs.svg);
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body style="overflow: hidden;background: url(images/bg_cancel.svg);background-size: 100%;">
+    <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
+        <div style="height: 15%;text-align: left;">
+            <img src="images/cancel_title.svg" style="height: 80%;" />
+        </div>
+        <div style="height: 15%;text-align: center;display: flex;flex-direction: row;">
+            <div style="height: 100%;width: 65%;text-align: left;">
+                <img src="images/notice2.svg" style="height: 80%;" />
+            </div>
+            <div id="fare_dp" style="height: 100%;width: 20%;text-align: right;display: none;">
+            </div>
+        </div>
+        <div style="height: 50%;display: flex;flex-direction: column;">
+            <div style="width: 100%;background: white;height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: #282472;text-align: center;">交易已取消</span>
+                    <span style="font-size: 4dvh;
+                    font-family: 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: #282472;text-align: center;">請取回現金</span>
+                    <br>
+                    <span style="font-size: 4dvh;
+                    font-family: Helvetica, 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: #282472;text-align: center;">The Transaction is cancelled</span>
+                    <span style="font-size: 4dvh;
+                    font-family: Helvetica, 文鼎粗黑, 文鼎粗黑體, Noto Sans TC, sans-serif;
+                    font-weight: 600;
+                    color: #282472;text-align: center;">Please get back your money</span>
+            </div>
+        </div>
+        <div style="height: 15.3%;display: flex;width: 85%;">
+
+        </div>
+        <div style="height: 5.5%;display: flex;flex-direction: row;">
+            <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
+                <span
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                    v30</span>
+            </div>
+            <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
+                <span id="date"
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function setDt() {
+            var d = new Date()
+            document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+        }
+        setDt()
+
+        function twoNums(num) {
+            if (num.toString().length == 1) {
+                return "0" + num.toString()
+            } else {
+                return num.toString()
+            }
+        }
+        function goBack() {
+            setTimeout(
+                function () {
+                    window.location.href = "home.html"
+                }
+                , 500)
+        }
+        setInterval(setDt, 1000)
+        setTimeout(goBack, 5000)
+        window.parent.narrate("process", "cancel_ticket")
+    </script>
+</body>
+
+</html>

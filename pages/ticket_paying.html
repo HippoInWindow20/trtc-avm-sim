@@ -232,6 +232,7 @@
         var setPrice = undefined
         var setQty = 1
         var paid = 0
+        var finalised = false
 
         function setDt() {
             var d = new Date()
@@ -263,12 +264,7 @@
 
         function cancel() {
             osc()
-            window.location.href = "home.html"
-        }
-
-        function removeReturn() {
-            document.getElementById("btnCancel").style.display = null
-            document.getElementById("btnReturn").style.display = "none"
+            window.location.href = "ticket_cancel.html"
         }
 
         function displayFare(fare) {
@@ -302,7 +298,7 @@
         var dispenseTicket
         function insertAmount(amount) {
             var sanitisedAmount = parseInt(amount)
-            if (sanitisedAmount < 0)
+            if (sanitisedAmount < 0 || finalised)
                 return
             paid = paid + sanitisedAmount
             if (setPrice * setQty - paid > 0) {
@@ -310,6 +306,8 @@
             } else {
                 displayFare(0)
                 window.parent.narrate("process", "processing")
+                document.getElementById("btnCancel").style.display = "none"
+                finalised = true
                 var dispensed = 0
                 dispenseTicket = setInterval(function () {
                     dispensed++
