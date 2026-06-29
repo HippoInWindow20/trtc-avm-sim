@@ -75,7 +75,7 @@
             </div>
             <div style="height: 70%;display: flex;flex-direction: row;">
                 <div style="width: 50%;text-align: center;">
-                    <button class="mainButton bigButton" onclick="osc()">
+                    <button class="mainButton bigButton" onclick="askCard()">
                         <img src="images/top_up.svg" style="height: 100%;" />
                     </button>
                 </div>
@@ -139,6 +139,15 @@
                 setTimeout(
                     function () {
                         window.location.href = "ticket.html"
+                    }
+                    , 500)
+            }
+
+            function askCard() {
+                osc()
+                setTimeout(
+                    function () {
+                        window.location.href = "ask_card.html"
                     }
                     , 500)
             }
