@@ -1,79 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>AVM</title>
-        <style>
-            button {
-                -webkit-tap-highlight-color: rgba(0,0,0,0);
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVM</title>
+    <style>
+        button {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
 
-    <body style="background: black;overflow: hidden;">
-        <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
-        <audio id="narrator" hidden></audio>
-        <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">Open tools</button>
-        <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
-            <div
-                style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
-                <iframe id="screen" style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
-            </div>
+<body style="background: black;overflow: hidden;">
+    <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
+    <audio id="narrator" hidden></audio>
+    <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">Open
+        tools</button>
+    <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
+        <div
+            style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
+            <iframe id="screen" style="width: 100%;aspect-ratio: 4/3;" src="pages/home.html"></iframe>
         </div>
-        <dialog id="tools">
-            <h1>Card sensor</h1>
-            <label for="card_remaining">卡片餘額</label>
-            <input id="card_remaining" type="number" />
-            <br>
-            <button>Place card</button>
-            <button>Remove card</button>
-            <br>
-            <h1>Input money</h1>
-            <button onclick="insertAmount(1)">1</button>
-            <button onclick="insertAmount(5)">5</button>
-            <button onclick="insertAmount(10)">10</button>
-            <button onclick="insertAmount(20)">20</button>
-            <button onclick="insertAmount(50)">50</button>
-            <button onclick="insertAmount(100)">100</button>
-            <button onclick="insertAmount(200)">200</button>
-            <button onclick="insertAmount(500)">500</button>
-            <button onclick="insertAmount(1000)">1000</button>
-            <br>
-            <br>
-            <button onclick="triggerDialog(false)" style="padding: 10px;">Close</button>
-        </dialog>
-        <script>
-            function touchSound() {
-                document.getElementById("osc").play()
-            }
-            function narrate(type, name) {
-                document.getElementById("narrator").src = "audio/" + type + "/" + name + ".mp3"
-                document.getElementById("narrator").play()
-            }
+    </div>
+    <dialog id="tools">
+        <h1>Card sensor</h1>
+        <label for="card_remaining">卡片餘額</label>
+        <input id="card_remaining" type="number" />
+        <br>
+        <button id="place_card" onclick="placeCard()">Place card</button>
+        <button id="remove_card" onclick="removeCard()" disabled>Remove card</button>
+        <br>
+        <h1>Input money</h1>
+        <button onclick="insertAmount(1)">1</button>
+        <button onclick="insertAmount(5)">5</button>
+        <button onclick="insertAmount(10)">10</button>
+        <button onclick="insertAmount(20)">20</button>
+        <button onclick="insertAmount(50)">50</button>
+        <button onclick="insertAmount(100)">100</button>
+        <button onclick="insertAmount(200)">200</button>
+        <button onclick="insertAmount(500)">500</button>
+        <button onclick="insertAmount(1000)">1000</button>
+        <br>
+        <br>
+        <button onclick="triggerDialog(false)" style="padding: 10px;">Close</button>
+    </dialog>
+    <script>
+        var cardPlaced = false
+        function touchSound() {
+            document.getElementById("osc").play()
+        }
+        function narrate(type, name) {
+            document.getElementById("narrator").src = "audio/" + type + "/" + name + ".mp3"
+            document.getElementById("narrator").play()
+        }
 
-            function triggerDialog(open) {
-                const myDialog = document.querySelector('#tools')
-                if (open) {
-                    myDialog.showModal()
-                } else {
-                    myDialog.close()
-                }
+        function triggerDialog(open) {
+            const myDialog = document.querySelector('#tools')
+            if (open) {
+                myDialog.showModal()
+            } else {
+                myDialog.close()
             }
+        }
 
-            // Machine functions
-            function insertAmount(amount) {
+        // Machine functions
+        function insertAmount(amount) {
+            try {
+                document.getElementById("screen").contentWindow.insertAmount(amount)
+            } catch (e) {
+                alert("Illegal action")
+            }
+            triggerDialog(false)
+        }
+
+        function placeCard() {
+            if (cardPlaced) {
+                alert("Illegal action")
+            } else {
                 try {
-                    document.getElementById("screen").contentWindow.insertAmount(amount)
-                }catch(e) {
+                    document.getElementById("screen").contentWindow.placeCard()
+                    cardPlaced = true
+                    document.getElementById("place_card").disabled = true
+                    document.getElementById("remove_card").disabled = false
+                } catch (e) {
                     alert("Illegal action")
                 }
-                triggerDialog(false)
             }
+            triggerDialog(false)
+        }
 
-            // Single-journey
-        </script>
-    </body>
+        function removeCard() {
+            if (!cardPlaced) {
+                alert("Illegal action")
+            } else {
+                try {
+                    document.getElementById("screen").contentWindow.removeCard()
+                    cardPlaced = false
+                    document.getElementById("place_card").disabled = false
+                    document.getElementById("remove_card").disabled = true
+                } catch (e) {
+                    alert("Illegal action")
+                }
+            }
+            triggerDialog(false)
+        }
+
+        // Single-journey
+    </script>
+</body>
 
 </html>

@@ -6,33 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        button {
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-
-        .btnCancel {
-            height: 80%;
-            aspect-ratio: 2;
-            border-radius: 10000000px;
-            border: none;
-            float: right;
-            background: url(images/return_btn_rect.svg);
+        .stdBox {
+            display: flex;
+            flex-grow: 1;
+            aspect-ratio: 16/9;
             background-size: 100%;
-            font-size: 0;
-        }
-
-        .btnCancel:active {
-            background: url(images/return_btn_rect_pressed.svg);
-            background-size: 100%;
+            border: 3px solid white;
+            border-radius: 10px;
+            background-color: lightgray;
+            margin: 5px;
         }
     </style>
 </head>
 
-<body style="overflow: hidden;background: url(images/bg_askcard.svg);background-size: 100%;">
+<body style="overflow: hidden;background: #49b4e2">
     <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
-        <div style="height: 80%;text-align: left;"></div>
-        <div style="height: 15.3%;display: flex;width: 85%;flex-direction: row-reverse;">
-            <button id="btnReturn" class="btnCancel" onclick="goBack()"></button>
+        <div style="height: 95.3%;text-align: left;display: flex;flex-direction: column">
+            <div style="display: flex;flex-direction: row;">
+                <div class="stdBox"
+                    style="background-image: url('images/summary_balance.svg');">
+                    
+                </div>
+                <div class="stdBox"
+                    style="background-image: url('images/summary_last.svg');background-size: 100%;">
+                    
+                </div>
+            </div>
+            <div style="display: flex;flex-direction: row;">
+                <div class="stdBox"
+                    style="background-color: transparent;background-image: url('images/summary_guide.svg');background-size: 100%;">
+                    
+                </div>
+                <div class="stdBox" style="background-image: url('images/summary_special.svg');background-size: 100%;">
+                    
+                </div>
+            </div>
         </div>
         <div style="height: 5.5%;display: flex;flex-direction: row;">
             <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
@@ -70,11 +78,11 @@
                 , 500)
         }
         setInterval(setDt, 1000)
-        window.parent.narrate("process", "place")
+        window.parent.narrate("process", "insert_bill")
 
-        async function placeCard() {
-            const url1 = `card_summary.html`;
-            const url2 = `pages/card_summary.html`;
+        async function removeCard () {
+            const url1 = `home.html`;
+            const url2 = `pages/home.html`;
 
             try {
                 const res = await fetch(url1, { method: "HEAD" });
