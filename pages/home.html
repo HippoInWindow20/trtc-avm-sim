@@ -170,6 +170,12 @@
         }
 
         window.parent.document.getElementById("narrator").pause()
+
+        if (window.parent.cardPlaced) {
+            setTimeout(function () {
+                placeCard(window.parent.document.getElementById('card_remaining').value)
+            }, 500)
+        }
     </script>
 </body>
 

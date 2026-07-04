@@ -134,8 +134,21 @@
         initialAmount = parseInt(params.get("amount"))
         document.getElementById("initial_amount_dp").innerText = params.get("amount")
 
-        function insertAmount(amount) {
-            // TODO
+        async function insertAmount(amount) {
+            const url1 = `card_topup.html?remaining=${initialAmount}&amount=${amount}`;
+            const url2 = `pages/card_topup.html?remaining=${initialAmount}&amount=${amount}`;
+
+            try {
+                const res = await fetch(url1, { method: "HEAD" });
+
+                if (res.ok) {
+                    window.location.href = url1;
+                } else {
+                    throw new Error("not ok");
+                }
+            } catch (e) {
+                window.location.href = url2;
+            }
         }
 
         // TODO: Randomise stuff
