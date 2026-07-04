@@ -72,9 +72,9 @@
         setInterval(setDt, 1000)
         window.parent.narrate("process", "place")
 
-        async function placeCard() {
-            const url1 = `card_summary.html`;
-            const url2 = `pages/card_summary.html`;
+        async function placeCard(amount) {
+            const url1 = `card_summary.html?amount=${amount}`;
+            const url2 = `pages/card_summary.html?amount=${amount}`;
 
             try {
                 const res = await fetch(url1, { method: "HEAD" });

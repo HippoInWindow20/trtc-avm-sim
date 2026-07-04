@@ -11,10 +11,28 @@
             flex-grow: 1;
             aspect-ratio: 16/9;
             background-size: 100%;
-            border: 3px solid white;
+            border: 0.5vw solid white;
             border-radius: 10px;
             background-color: lightgray;
-            margin: 5px;
+            margin: 0.5vw;
+        }
+
+        .stdBlue {
+            color: #282472;
+            font-size: 4vw;
+            font-weight: bolder;
+            font-family: Helvetica, Arial, Noto Sans, Noto Sans TC;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .stdBlk {
+            color: black;
+            font-size: 3vw;
+            font-weight: bolder;
+            font-family: Helvetica, Arial, Noto Sans, Noto Sans TC;
+            text-align: right;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -23,22 +41,36 @@
     <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
         <div style="height: 95.3%;text-align: left;display: flex;flex-direction: column">
             <div style="display: flex;flex-direction: row;">
-                <div class="stdBox"
-                    style="background-image: url('images/summary_balance.svg');">
-                    
+                <div class="stdBox" style="background-image: url('images/summary_balance.svg');">
+                    <div style="width: 100%;height: 100%;position: relative;">
+                        <span class="stdBlue" style="position: absolute;top: 50%;right: 5%;">2038/01/01</span>
+                        <span id="initial_amount_dp" class="stdBlue" style="position: absolute;top: 75%;right: 15%;">-15</span>
+                    </div>
                 </div>
-                <div class="stdBox"
-                    style="background-image: url('images/summary_last.svg');background-size: 100%;">
-                    
+                <div class="stdBox" style="background-image: url('images/summary_last.svg');background-size: 100%;">
+                    <div style="width: 100%;height: 100%;position: relative;">
+                        <span class="stdBlk" style="position: absolute;top: 22%;left: 30%;">2024/07/08 17:16:12</span>
+                        <span class="stdBlk" style="position: absolute;top: 40%;right: 30%;">67</span>
+                        <span class="stdBlk" style="position: absolute;top: 60%;right: 30%;">92</span>
+                        <span class="stdBlk"
+                            style="position: absolute;top: 77%;left: 30%;text-align: start;">009南京復興</span>
+                        <span class="stdBlk"
+                            style="position: absolute;top: 91%;left: 30%;text-align: start;font-size: 1.5vw;">Nanjing
+                            Fuxing</span>
+                    </div>
                 </div>
             </div>
             <div style="display: flex;flex-direction: row;">
                 <div class="stdBox"
                     style="background-color: transparent;background-image: url('images/summary_guide.svg');background-size: 100%;">
-                    
+
                 </div>
                 <div class="stdBox" style="background-image: url('images/summary_special.svg');background-size: 100%;">
-                    
+                    <div style="width: 100%;height: 100%;position: relative;">
+                        <span class="stdBlk" style="position: absolute;top: 32%;left: 40%;color: red;">TPASS/都會通</span>
+                        <span class="stdBlk" style="position: absolute;top: 55%;left: 40%;">2024/07/08</span>
+                        <span class="stdBlk" style="position: absolute;top: 75%;left: 40%;">2024/08/07</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +87,7 @@
         </div>
     </div>
     <script>
+        var initialAmount = undefined
 
         function setDt() {
             var d = new Date()
@@ -80,7 +113,7 @@
         setInterval(setDt, 1000)
         window.parent.narrate("process", "insert_bill")
 
-        async function removeCard () {
+        async function removeCard() {
             const url1 = `home.html`;
             const url2 = `pages/home.html`;
 
@@ -95,6 +128,14 @@
             } catch (e) {
                 window.location.href = url2;
             }
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        initialAmount = parseInt(params.get("amount"))
+        document.getElementById("initial_amount_dp").innerText = params.get("amount")
+
+        function insertAmount(amount) {
+            // TODO
         }
     </script>
 </body>

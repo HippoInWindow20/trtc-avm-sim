@@ -28,7 +28,7 @@
         <label for="card_remaining">卡片餘額</label>
         <input id="card_remaining" type="number" />
         <br>
-        <button id="place_card" onclick="placeCard()">Place card</button>
+        <button id="place_card" onclick="placeCard(document.getElementById('card_remaining').value)">Place card</button>
         <button id="remove_card" onclick="removeCard()" disabled>Remove card</button>
         <br>
         <h1>Input money</h1>
@@ -74,12 +74,19 @@
             triggerDialog(false)
         }
 
-        function placeCard() {
+        function placeCard(amount) {
+            try {
+                parseInt(amount)
+            }catch(e) {
+                alert("Illegal action")
+                triggerDialog(false)
+                return
+            }
             if (cardPlaced) {
                 alert("Illegal action")
             } else {
                 try {
-                    document.getElementById("screen").contentWindow.placeCard()
+                    document.getElementById("screen").contentWindow.placeCard(amount)
                     cardPlaced = true
                     document.getElementById("place_card").disabled = true
                     document.getElementById("remove_card").disabled = false
