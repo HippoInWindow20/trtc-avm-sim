@@ -234,6 +234,11 @@
 
         function next() {
             window.parent.touchSound()
+            setTimeout(
+                function () {
+                    window.location.href = `topping_up.html?remaining=${initialAmount}&amount=${inserted}`
+                }, 750
+            )
         }
 
 
