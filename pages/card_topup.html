@@ -60,13 +60,29 @@
             border-radius: 10000000px;
             border: none;
             float: right;
-            background: url(images/return_btn_rect.svg);
+            background: url(images/cancel_btn_rect.svg);
             background-size: 100%;
             font-size: 0;
         }
 
         .btnCancel:active {
-            background: url(images/return_btn_rect_pressed.svg);
+            background: url(images/cancel_btn_rect_prs.svg);
+            background-size: 100%;
+        }
+
+        .btnNext {
+            height: 80%;
+            aspect-ratio: 2;
+            border-radius: 10000000px;
+            border: none;
+            float: right;
+            background: url(images/next_btn_rect.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnNext:active {
+            background: url(images/next_btn_rect_prs.svg);
             background-size: 100%;
         }
     </style>
@@ -78,23 +94,22 @@
             <div style="display: flex;flex-direction: column;flex-grow: 1">
                 <div class="stdBox" style="display: flex;flex-direction: row;flex-grow: 1;">
                     <div style="width: 100%;height: 100%;display: flex;flex-direction: row;align-items: center;">
-                        <img style="width: 30%;" src="images/fare_notice.svg" />
-                        <span style="width: 63%;padding-right: 2%;" class="stdBlue">15</span>
-                        <img style="width: 7%;" src="images/dollars.svg" />
+                        <img style="width: 50%;" src="images/rem_bal.svg" />
+                        <span id="initial_amount_dp" style="width: 43%;padding-right: 2%;" class="stdBlue">15</span>
+                        <img style="width: 7%;" src="images/dollars_bl.svg" />
                     </div>
                 </div>
                 <div class="stdBox" style="display: flex;flex-direction: row;flex-grow: 1;">
                     <div style="width: 100%;height: 100%;display: flex;flex-direction: row;align-items: center;">
-                        <img style="width: 30%;" src="images/fare_notice.svg" />
-                        <span style="width: 63%;padding-right: 2%;" class="stdBlue">15</span>
-                        <img style="width:7%;" src="images/dollars.svg" />
+                        <img style="width: 50%;" src="images/amm_ins.svg" />
+                        <span id="inserted_dp" style="width: 43%;padding-right: 2%;" class="stdBlue">15</span>
+                        <img style="width:7%;" src="images/dollars_bl.svg" />
                     </div>
                 </div>
-                <div class="stdBox" style="display: flex;flex-direction: row;flex-grow: 1;">
+                <div class="stdBox" style="display: flex;flex-direction: row;flex-grow: 1;padding: 1%;">
                     <div style="width: 100%;height: 100%;display: flex;flex-direction: row;align-items: center;">
-                        <img style="width: 30%;" src="images/fare_notice.svg" />
-                        <span style="width: 63%;padding-right: 2%;" class="stdBlue">15</span>
-                        <img style="width: 7%;" src="images/dollars.svg" />
+                        <img style="width: 100%;" src="images/topup_hint.svg" />
+                        <!-- <span style="width: 63%;padding-right: 2%;" class="stdBlue">15</span> -->
                     </div>
                 </div>
             </div>
@@ -109,8 +124,8 @@
                 <span class="guideZH">不再投入 請按「<white>下一步</white>」</span>
                 <span class="guideEN">Press <white>"Next"</white> to continue</span>
             </div>
-            <div style="display: flex;flex-direction: row;align-items: center;flex-grow: 0.6;">
-                <button id="btnReturn" class="btnCancel" onclick="goBack()" style="margin-left: 50%;"></button>
+            <div style="display: flex;flex-direction: row;align-items: center;flex-grow: 0.8;">
+                <button id="btnReturn" class="btnNext" onclick="" style="margin-left: 40%;"></button>
                 <button id="btnReturn" class="btnCancel" onclick="goBack()" style="margin-left: 5%;height: 70%;"></button>
             </div>
         </div>
@@ -128,6 +143,7 @@
     </div>
     <script>
         var initialAmount = undefined
+        var inserted = 0
 
         function setDt() {
             var d = new Date()
@@ -171,8 +187,10 @@
         }
 
         const params = new URLSearchParams(window.location.search);
-        initialAmount = parseInt(params.get("amount"))
-        document.getElementById("initial_amount_dp").innerText = params.get("amount")
+        initialAmount = parseInt(params.get("remaining"))
+        inserted = parseInt(params.get("amount"))
+        document.getElementById("initial_amount_dp").innerText = params.get("remaining")
+        document.getElementById("inserted_dp").innerText = params.get("amount")
 
         function insertAmount(amount) {
             // TODO

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200"
+   height="100"
+   viewBox="0 0 52.916666 26.458333"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="next_btn_rect.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8578564"
+     inkscape:cx="128.59289"
+     inkscape:cy="24.668839"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0.28496504"
+         id="stop3" />
+      <stop
+         style="stop-color:#0060fb;stop-opacity:1;"
+         offset="0.48076928"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="26.458332"
+       y1="-13.229166"
+       x2="26.458332"
+       y2="39.6875"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter3"
+       x="-0.05250421"
+       y="-0.10870322"
+       width="1.1050084"
+       height="1.2174064">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.9228929"
+         id="feGaussianBlur3" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1"
+       style="fill:url(#linearGradient2);stroke-width:0.789001;paint-order:fill markers stroke"
+       d="m 13.229166,0 h 26.458332 c 7.328958,0 13.229166,5.900208 13.229166,13.229166 0,7.328958 -5.900208,13.229166 -13.229166,13.229166 H 13.229166 C 5.900208,26.458332 0,20.558124 0,13.229166 0,5.900208 5.900208,0 13.229166,0 Z" />
+    <rect
+       style="mix-blend-mode:normal;fill:#0060fb;fill-opacity:1;stroke:#0060fb;stroke-width:0.718494;stroke-opacity:1;paint-order:fill markers stroke;filter:url(#filter3)"
+       id="rect1-1"
+       width="49.028259"
+       height="23.680901"
+       x="1.9442021"
+       y="1.3887157"
+       ry="11.84045"
+       transform="matrix(0.96709426,0,0,0.92865848,0.87063117,0.9437887)" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:10.8499px;line-height:1;font-family:'Noto Sans JP';-inkscape-font-specification:'Noto Sans JP Medium';fill:#ffffff;stroke-width:0.271249"
+       x="10.22689"
+       y="13.555907"
+       id="text1"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Sans TC';-inkscape-font-specification:'Noto Sans TC';fill:#ffffff;stroke-width:0.271249"
+         x="10.22689"
+         y="13.555907"
+         id="tspan2">下一步</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:7.66628px;line-height:1;font-family:'Noto Sans JP';-inkscape-font-specification:'Noto Sans JP Medium';stroke-width:0.191657"
+       x="15.99768"
+       y="21.894829"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:'Helvetica Bold';fill:#ffffff;stroke-width:0.191657"
+         x="15.99768"
+         y="21.894829">NEXT</tspan></text>
+  </g>
+</svg>
