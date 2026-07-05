@@ -64,34 +64,38 @@
         }
 
         .btnCancel {
-            height: 80%;
+            height: 70%;
             aspect-ratio: 2;
             border-radius: 10000000px;
             border: none;
             float: right;
-            background: url(images/cancel_btn_rect.svg);
+            background: url(images/return_btn_rect.svg);
             background-size: 100%;
             font-size: 0;
+            margin-left: 5%;
+            display: none;
         }
 
         .btnCancel:active {
-            background: url(images/cancel_btn_rect_prs.svg);
+            background: url(images/return_btn_rect_pressed.svg);
             background-size: 100%;
         }
 
         .btnNext {
-            height: 80%;
+            height: 70%;
             aspect-ratio: 2;
             border-radius: 10000000px;
             border: none;
             float: right;
-            background: url(images/next_btn_rect.svg);
+            background: url(images/receipt_btn.svg);
             background-size: 100%;
             font-size: 0;
+            margin-left: 55%;
+            display: none;
         }
 
         .btnNext:active {
-            background: url(images/next_btn_rect_prs.svg);
+            background: url(images/receipt_btn_prs.svg);
             background-size: 100%;
         }
     </style>
@@ -132,9 +136,8 @@
         <div style="height: 20.3%;display: flex;flex-direction: column"></div>
         <div style="height: 20%;display: flex;flex-direction: column">
             <div style="display: flex;flex-direction: row;align-items: center;flex-grow: 0.8;">
-                <button id="btnReturn" class="btnNext" onclick="next()" style="margin-left: 55%;"></button>
-                <button id="btnReturn" class="btnCancel" onclick="goBack()"
-                    style="margin-left: 2%;"></button>
+                <button id="btnReceipt" class="btnNext"></button>
+                <button id="btnReturn" class="btnCancel" onclick="goBack()"></button>
             </div>
         </div>
         <div style="height: 5.5%;display: flex;flex-direction: row;">
@@ -151,6 +154,11 @@
     </div>
     <script>
         window.parent.narrate("process", "topup_success")
+        setTimeout(function () {
+            document.getElementById("btnReceipt").style.display = "block"
+            document.getElementById("btnReturn").style.display = "block"
+        }, 3200)
+
 
         function setDt() {
             var d = new Date()
@@ -175,12 +183,17 @@
         }
         setInterval(setDt, 1000)
 
-        function removeCard() {}
+        function removeCard() { }
 
         const params = new URLSearchParams(window.location.search);
         document.getElementById("initial_amount_dp").innerText = params.get("remaining")
         document.getElementById("inserted_dp").innerText = params.get("amount")
         document.getElementById("final_amount_dp").innerText = parseInt(params.get("remaining")) + parseInt(params.get("amount"))
+
+
+        setTimeout(function () {
+            window.location.href = "home.html"
+        }, 10000)
     </script>
 </body>
 
