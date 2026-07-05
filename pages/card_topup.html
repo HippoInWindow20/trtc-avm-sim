@@ -26,6 +26,15 @@
             white-space: nowrap;
         }
 
+        .stdRed {
+            color: red;
+            font-size: 6vw;
+            font-weight: bolder;
+            font-family: Helvetica, Arial, Noto Sans, Noto Sans TC;
+            text-align: right;
+            white-space: nowrap;
+        }
+
         .stdBlk {
             color: black;
             font-size: 3vw;
@@ -107,9 +116,11 @@
                     </div>
                 </div>
                 <div class="stdBox" style="display: flex;flex-direction: row;flex-grow: 1;padding: 1%;">
-                    <div style="width: 100%;height: 100%;display: flex;flex-direction: row;align-items: center;">
-                        <img style="width: 100%;" src="images/topup_hint.svg" />
-                        <!-- <span style="width: 63%;padding-right: 2%;" class="stdBlue">15</span> -->
+                    <div
+                        style="width: 100%;height: 100%;display: flex;flex-direction: row;align-items: center;background-image: url('images/topup_hint.svg');background-size: 100%;">
+                        <!-- <img style="width: 100%;" src="images/topup_hint.svg" /> -->
+                        <span id="bills_dp" style="position: relative;top: 0;left: 39%" class="stdRed">15</span>
+                        <span id="coins_dp" style="position: relative;top: 0;left: 61%" class="stdRed">20</span>
                     </div>
                 </div>
             </div>
@@ -125,8 +136,9 @@
                 <span class="guideEN">Press <white>"Next"</white> to continue</span>
             </div>
             <div style="display: flex;flex-direction: row;align-items: center;flex-grow: 0.8;">
-                <button id="btnReturn" class="btnNext" onclick="" style="margin-left: 40%;"></button>
-                <button id="btnReturn" class="btnCancel" onclick="goBack()" style="margin-left: 5%;height: 70%;"></button>
+                <button id="btnReturn" class="btnNext" onclick="next()" style="margin-left: 40%;"></button>
+                <button id="btnReturn" class="btnCancel" onclick="goBack()"
+                    style="margin-left: 5%;height: 70%;"></button>
             </div>
         </div>
         <div style="height: 5.5%;display: flex;flex-direction: row;">
@@ -144,6 +156,11 @@
     <script>
         var initialAmount = undefined
         var inserted = 0
+        var coins = 20
+        var bills = 15
+
+        var coinsList = [1, 5, 10, 20, 50]
+        var billsList = [100, 200, 500, 1000]
 
         function setDt() {
             var d = new Date()
@@ -185,17 +202,45 @@
             }
         }
 
-        const params = new URLSearchParams(window.location.search);
-        initialAmount = parseInt(params.get("remaining"))
-        inserted = parseInt(params.get("amount"))
-        document.getElementById("initial_amount_dp").innerText = params.get("remaining")
-        document.getElementById("inserted_dp").innerText = params.get("amount")
-
         function insertAmount(amount) {
-            // TODO
+            if (coinsList.includes(parseInt(amount))) {
+                if (coins > 0)
+                    coins--
+                else
+                    throw new Error("Coins unavailable")
+            } else if (billsList.includes(parseInt(amount))) {
+                if (bills > 0)
+                    bills--
+                else
+                    throw new Error("Bills unavailable")
+            } else {
+                throw new Error("Invalid currency")
+            }
+
+            if (amount < 0)
+                return
+            try {
+                parseInt(amount)
+            } catch (e) {
+                console.error("Illegal amount")
+                return
+            }
+
+            inserted += parseInt(amount)
+            document.getElementById("inserted_dp").innerText = inserted
+            document.getElementById("bills_dp").innerText = bills
+            document.getElementById("coins_dp").innerText = coins
         }
 
-        // TODO: Randomise stuff
+        function next() {
+            window.parent.touchSound()
+        }
+
+
+        const params = new URLSearchParams(window.location.search);
+        initialAmount = parseInt(params.get("remaining"))
+        document.getElementById("initial_amount_dp").innerText = params.get("remaining")
+        insertAmount(parseInt(params.get("amount")))
     </script>
 </body>
 
