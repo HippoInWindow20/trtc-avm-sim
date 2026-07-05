@@ -186,20 +186,7 @@
         setInterval(setDt, 1000)
 
         async function removeCard() {
-            const url1 = `home.html`;
-            const url2 = `pages/home.html`;
-
-            try {
-                const res = await fetch(url1, { method: "HEAD" });
-
-                if (res.ok) {
-                    window.location.href = url1;
-                } else {
-                    throw new Error("not ok");
-                }
-            } catch (e) {
-                window.location.href = url2;
-            }
+            goBack()
         }
 
         function insertAmount(amount) {
