@@ -186,7 +186,11 @@
         setInterval(setDt, 1000)
 
         async function removeCard() {
-            goBack()
+            setTimeout(
+                function () {
+                    window.location.href = "topup_cancel.html"
+                }
+                , 500)
         }
 
         function insertAmount(amount) {

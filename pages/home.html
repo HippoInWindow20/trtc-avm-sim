@@ -80,7 +80,7 @@
                 </button>
             </div>
             <div style="width: 50%;text-align: center;" onclick="osc()">
-                <button class="mainButton smallButton1"
+                <button class="mainButton smallButton1" onclick="tpass()"
                     style="background: url(images/tpass.svg);background-size: 100%;">
                 </button>
                 <button class="mainButton smallButton2" onclick="ticket()">
@@ -148,6 +148,15 @@
             setTimeout(
                 function () {
                     window.location.href = "ask_card.html"
+                }
+                , 500)
+        }
+
+        function tpass() {
+            osc()
+            setTimeout(
+                function () {
+                    window.location.href = "ask_card_tpass.html"
                 }
                 , 500)
         }
