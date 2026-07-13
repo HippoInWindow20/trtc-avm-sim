@@ -25,8 +25,7 @@
 <body style="background: black;overflow: hidden;">
     <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
     <audio id="narrator" hidden></audio>
-    <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">Open
-        tools</button>
+    <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">投幣 / 放置卡片</button>
     <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
         <div
             style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
@@ -34,14 +33,14 @@
         </div>
     </div>
     <dialog id="tools">
-        <h1>Card sensor</h1>
+        <h1>票卡感應區</h1>
         <label for="card_remaining">卡片餘額</label>
         <input id="card_remaining" type="number" />
         <br>
-        <button id="place_card" onclick="placeCard(document.getElementById('card_remaining').value)">Place card</button>
-        <button id="remove_card" onclick="removeCard()" disabled>Remove card</button>
+        <button id="place_card" onclick="placeCard(document.getElementById('card_remaining').value)">放置卡片</button>
+        <button id="remove_card" onclick="removeCard()" disabled>移除卡片</button>
         <br>
-        <h1>Input money</h1>
+        <h1>投入現金</h1>
         <button onclick="insertAmount(1)">1</button>
         <button onclick="insertAmount(5)">5</button>
         <button onclick="insertAmount(10)">10</button>
@@ -53,7 +52,7 @@
         <button onclick="insertAmount(1000)">1000</button>
         <br>
         <br>
-        <button onclick="triggerDialog(false)" style="padding: 10px;">Close</button>
+        <button onclick="triggerDialog(false)" style="padding: 10px;">關閉</button>
     </dialog>
     <script>
         var cardPlaced = false

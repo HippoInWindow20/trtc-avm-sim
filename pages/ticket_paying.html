@@ -128,6 +128,24 @@
         .btnWide {
             aspect-ratio: 1.8;
         }
+
+        .btnNext {
+            height: 60%;
+            aspect-ratio: 2;
+            border-radius: 10000000px;
+            border: none;
+            float: right;
+            background: url(images/receipt_btn.svg);
+            background-size: 100%;
+            font-size: 0;
+            margin-right: 30%;
+            display: none;
+        }
+
+        .btnNext:active {
+            background: url(images/receipt_btn_prs.svg);
+            background-size: 100%;
+        }
     </style>
 </head>
 
@@ -198,15 +216,17 @@
                 </div>
             </div>
             <div style="width: 50%;">
-                <img src="images/insert.svg" style="width: 100%;top: 40%;position: relative;" />
+                <img id="step_illus" src="images/insert.svg" style="width: 100%;top: 40%;position: relative;" />
             </div>
         </div>
         <div style="height: 15.3%;display: flex;width: 85%;">
             <div style="height: 100%;display: flex;width: 70%;">
-                <img src="images/bills_acc.svg" style="height: 80%;float: left;" />
+                <img id="bills_acc" src="images/bills_acc.svg" style="height: 80%;float: left;" />
             </div>
-            <div style="height: 100%;display: flex;width: 30%;flex-direction: row-reverse;">
+            <div style="height: 100%;display: flex;width: 30%;flex-direction: row-reverse;align-items: center;">
                 <button id="btnCancel" class="btnCancelRed" onclick="cancel()"></button>
+                <button id="btnReturn" class="btnCancel" style="display: none;" onclick="goBack()"></button>
+                <button id="btnReceipt" class="btnNext"></button>
             </div>
         </div>
         <div style="height: 5.5%;display: flex;flex-direction: row;">
@@ -233,6 +253,7 @@
         var setQty = 1
         var paid = 0
         var finalised = false
+        var overpaid = false
 
         function setDt() {
             var d = new Date()
@@ -305,8 +326,13 @@
                 displayFare(setPrice * setQty - paid)
             } else {
                 displayFare(0)
+                if (setPrice * setQty - paid < 0) {
+                    overpaid = true
+                }
                 window.parent.narrate("process", "processing")
+                document.getElementById("step_illus").src = `images/ticket_wait.svg`
                 document.getElementById("btnCancel").style.display = "none"
+                document.getElementById("bills_acc").style.display = "none"
                 finalised = true
                 var dispensed = 0
                 dispenseTicket = setInterval(function () {
@@ -315,14 +341,20 @@
                     if (dispensed >= setQty) {
                         setTimeout(
                             function () {  
-                                window.parent.narrate("process", "get_ticket_change")
-                            }, 1000
+                                document.getElementById("step_illus").src = `images/ticket_take.svg`
+                                document.getElementById("btnReturn").style.display = "block"
+                                document.getElementById("btnReceipt").style.display = "block"
+                                if (overpaid)
+                                    window.parent.narrate("process", "get_ticket_change")
+                                else
+                                    window.parent.narrate("process", "get_ticket_no_change")
+                            }, 3000
                         )
                         clearInterval(dispenseTicket)
                         setTimeout(
                             function () {
                                 window.location.href = "home.html"
-                            }, 6000
+                            }, 11000
                         )
                     }
                 }, 1000)
