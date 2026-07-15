@@ -116,6 +116,7 @@
 
         const params = new URLSearchParams(window.location.search);
         document.getElementById("initial_amount_dp").innerText = params.get("final")
+        window.parent.document.getElementById("card_remaining").value = parseInt(params.get("final"))
 
         function receipt() {
             window.parent.touchSound()

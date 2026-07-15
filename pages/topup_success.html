@@ -189,7 +189,7 @@
         document.getElementById("initial_amount_dp").innerText = params.get("remaining")
         document.getElementById("inserted_dp").innerText = params.get("amount")
         document.getElementById("final_amount_dp").innerText = parseInt(params.get("remaining")) + parseInt(params.get("amount"))
-
+        window.parent.document.getElementById("card_remaining").value = parseInt(params.get("remaining")) + parseInt(params.get("amount"))
 
         setTimeout(function () {
             window.location.href = "home.html"

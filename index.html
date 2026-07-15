@@ -99,6 +99,7 @@
                     cardPlaced = true
                     document.getElementById("place_card").disabled = true
                     document.getElementById("remove_card").disabled = false
+                    document.getElementById("card_remaining").readOnly = true
                 } catch (e) {
                     alert("Illegal action")
                 }
@@ -115,6 +116,7 @@
                     cardPlaced = false
                     document.getElementById("place_card").disabled = false
                     document.getElementById("remove_card").disabled = true
+                    document.getElementById("card_remaining").readOnly = false
                 } catch (e) {
                     alert("Illegal action")
                 }
