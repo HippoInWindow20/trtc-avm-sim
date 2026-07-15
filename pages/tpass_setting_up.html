@@ -204,8 +204,8 @@
                 return
             }
             document.getElementById("inserted_dp").innerText = inserted
-            document.getElementById("rem_dp").innerText = inserted > 1200 ? 0 : (1200 - inserted)
-            if (inserted >= 1200) {
+            document.getElementById("rem_dp").innerText = inserted + initialAmount > 1200 ? 0 : (1200 - inserted - initialAmount)
+            if (inserted + initialAmount >= 1200) {
                 triggerConfirm(true)
             }
         }
@@ -217,8 +217,13 @@
         insertAmount(parseInt(params.get("amount")))
         // TODO: Randomise stuff
 
-        function next () {
+        function next() {
             window.parent.touchSound()
+            setTimeout(
+                function () {
+                    window.location.href = `tpass_progress.html?remaining=${initialAmount}&inserted=${inserted}`
+                }, 750
+            )
         }
     </script>
 </body>

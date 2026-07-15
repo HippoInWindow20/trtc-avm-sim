@@ -34,38 +34,6 @@
             text-align: right;
             white-space: nowrap;
         }
-
-        .btnCancel {
-            height: 50%;
-            aspect-ratio: 2;
-            border-radius: 10000000px;
-            border: none;
-            float: right;
-            background: url(images/cancel_btn_rect_tpass.svg);
-            background-size: 100%;
-            font-size: 0;
-        }
-
-        .btnCancel:active {
-            background: url(images/cancel_btn_rect_tpass_prs.svg);
-            background-size: 100%;
-        }
-
-        .btnNext {
-            height: 60%;
-            aspect-ratio: 2;
-            border-radius: 10000000px;
-            border: none;
-            float: right;
-            background: url(images/confirm_btn_rect.svg);
-            background-size: 100%;
-            font-size: 0;
-        }
-
-        .btnNext:active {
-            background: url(images/confirm_btn_rect_prs.svg);
-            background-size: 100%;
-        }
     </style>
 </head>
 
@@ -90,14 +58,9 @@
             </div>
             <div style="display: flex;flex-direction: row;">
                 <div class="stdBox"
-                    style="background-color: transparent;background-image: url('images/tpass_price.svg');background-size: 100%;aspect-ratio: 35/9;">
+                    style="background-color: transparent;background-image: url('images/tpass_progress.svg');background-size: 100%;aspect-ratio: 16/5;">
 
                 </div>
-            </div>
-            <div style="display: flex;flex-direction: row;height: 15%;flex-grow: 1;background-color: transparent;background-image: url('images/tpass_confirm_row.svg');background-size: 100%;align-items: center;">
-                <button class="btnNext" onclick="next()" style="margin-left: 50%;"></button>
-                <button class="btnCancel" onclick="goBack()"
-                    style="margin-left: 10%;"></button>
             </div>
         </div>
         <div style="height: 5.5%;display: flex;flex-direction: row;">
@@ -114,6 +77,7 @@
     </div>
     <script>
         var initialAmount = undefined
+        var inserted = 0
 
         function setDt() {
             var d = new Date()
@@ -128,63 +92,18 @@
                 return num.toString()
             }
         }
-        function goBack() {
-            window.parent.touchSound()
-            setTimeout(
-                function () {
-                    window.location.href = "home.html"
-                }
-                , 500)
-        }
         setInterval(setDt, 1000)
 
-        async function removeCard() {
-            const url1 = `home.html`;
-            const url2 = `pages/home.html`;
-
-            try {
-                const res = await fetch(url1, { method: "HEAD" });
-
-                if (res.ok) {
-                    window.location.href = url1;
-                } else {
-                    throw new Error("not ok");
-                }
-            } catch (e) {
-                window.location.href = url2;
-            }
-        }
-
         const params = new URLSearchParams(window.location.search);
-        initialAmount = parseInt(params.get("amount"))
-        document.getElementById("initial_amount_dp").innerText = params.get("amount")
+        initialAmount = parseInt(params.get("remaining"))
+        inserted = parseInt(params.get("inserted"))
+        document.getElementById("initial_amount_dp").innerText = params.get("remaining")
 
-        async function insertAmount(amount) {
-            const url1 = `card_topup.html?remaining=${initialAmount}&amount=${amount}`;
-            const url2 = `pages/card_topup.html?remaining=${initialAmount}&amount=${amount}`;
-
-            try {
-                const res = await fetch(url1, { method: "HEAD" });
-
-                if (res.ok) {
-                    window.location.href = url1;
-                } else {
-                    throw new Error("not ok");
-                }
-            } catch (e) {
-                window.location.href = url2;
-            }
-        }
-
-        function next() {
-            window.parent.touchSound()
-            setTimeout(
-                function () {
-                    window.location.href = `tpass_progress.html?remaining=${initialAmount}&inserted=0`
-                }, 750
-            )
-        }
-
+        setTimeout(
+            function () {
+                window.location.href = `tpass_success.html?final=${initialAmount + inserted - 1200}`
+            }, 2000
+        )
         // TODO: Randomise stuff
     </script>
 </body>
