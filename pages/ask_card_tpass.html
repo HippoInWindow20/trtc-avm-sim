@@ -73,20 +73,24 @@
         window.parent.narrate("process", "place")
 
         async function placeCard(amount) {
-            // const url1 = `card_summary.html?amount=${amount}`;
-            // const url2 = `pages/card_summary.html?amount=${amount}`;
+            var url1 = `tpass_summary.html?amount=${amount}`;
+            var url2 = `pages/tpass_summary.html?amount=${amount}`;
+            if (amount >= 1200) {
+                url1 = `tpass_summary_enough.html?amount=${amount}`;
+                url2 = `pages/tpass_summary_enough.html?amount=${amount}`;
+            }
 
-            // try {
-            //     const res = await fetch(url1, { method: "HEAD" });
+            try {
+                const res = await fetch(url1, { method: "HEAD" });
 
-            //     if (res.ok) {
-            //         window.location.href = url1;
-            //     } else {
-            //         throw new Error("not ok");
-            //     }
-            // } catch (e) {
-            //     window.location.href = url2;
-            // }
+                if (res.ok) {
+                    window.location.href = url1;
+                } else {
+                    throw new Error("not ok");
+                }
+            } catch (e) {
+                window.location.href = url2;
+            }
         }
     </script>
 </body>

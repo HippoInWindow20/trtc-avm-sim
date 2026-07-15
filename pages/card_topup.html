@@ -136,8 +136,8 @@
                 <span class="guideEN">Press <white>"Next"</white> to continue</span>
             </div>
             <div style="display: flex;flex-direction: row;align-items: center;flex-grow: 0.8;">
-                <button id="btnReturn" class="btnNext" onclick="next()" style="margin-left: 40%;"></button>
-                <button id="btnReturn" class="btnCancel" onclick="goBack()"
+                <button class="btnNext" onclick="next()" style="margin-left: 40%;"></button>
+                <button class="btnCancel" onclick="goBack()"
                     style="margin-left: 5%;height: 70%;"></button>
             </div>
         </div>
@@ -208,7 +208,7 @@
                 throw new Error("Invalid currency")
             }
 
-            if (amount < 0)
+            if (parseInt(amount) < 0)
                 return
             try {
                 parseInt(amount)

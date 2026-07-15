@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .stdBox {
+            display: flex;
+            flex-grow: 1;
+            aspect-ratio: 16/9;
+            background-size: 100%;
+            border: 0.5vw solid white;
+            border-radius: 10px;
+            background-color: lightgray;
+            margin: 0.5vw;
+        }
+
+        .stdBlue {
+            color: #282472;
+            font-size: 4vw;
+            font-weight: bolder;
+            font-family: Helvetica, Arial, Noto Sans, Noto Sans TC;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .stdBlk {
+            color: black;
+            font-size: 3vw;
+            font-weight: bolder;
+            font-family: Helvetica, Arial, Noto Sans, Noto Sans TC;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .btnCancel {
+            height: 50%;
+            aspect-ratio: 2;
+            border-radius: 10000000px;
+            border: none;
+            float: right;
+            background: url(images/cancel_btn_rect_tpass.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnCancel:active {
+            background: url(images/cancel_btn_rect_tpass_prs.svg);
+            background-size: 100%;
+        }
+
+        .btnNext {
+            height: 60%;
+            aspect-ratio: 2;
+            border-radius: 10000000px;
+            border: none;
+            float: right;
+            background: url(images/confirm_btn_rect.svg);
+            background-size: 100%;
+            font-size: 0;
+        }
+
+        .btnNext:active {
+            background: url(images/confirm_btn_rect_prs.svg);
+            background-size: 100%;
+        }
+
+        .priceDP {
+            font-size: 5vw;
+        }
+    </style>
+</head>
+
+<body style="overflow: hidden;background: #49b4e2">
+    <div style="width: 100%;aspect-ratio: 4/3;flex-direction: column;">
+        <div style="height: 95.3%;text-align: left;display: flex;flex-direction: column">
+            <div style="display: flex;flex-direction: row;">
+                <div class="stdBox" style="background-image: url('images/summary_balance.svg');">
+                    <div style="width: 100%;height: 100%;position: relative;">
+                        <span class="stdBlue" style="position: absolute;top: 50%;right: 5%;">2038/01/01</span>
+                        <span id="initial_amount_dp" class="stdBlue"
+                            style="position: absolute;top: 75%;right: 15%;">-15</span>
+                    </div>
+                </div>
+
+                <div class="stdBox" style="background-image: url('images/summary_special.svg');background-size: 100%;">
+                    <div style="width: 100%;height: 100%;position: relative;">
+                        <span class="stdBlk" style="position: absolute;top: 32%;left: 40%;color: red;">TPASS/都會通</span>
+                        <span class="stdBlk" style="position: absolute;top: 55%;left: 40%;">2024/07/08</span>
+                        <span class="stdBlk" style="position: absolute;top: 75%;left: 40%;">2024/08/07</span>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;flex-direction: row;">
+                <div class="stdBox"
+                    style="background-color: transparent;background-image: url('images/tpass_rem.svg');background-size: 100%;aspect-ratio: 35/9;">
+                    <span id="inserted_dp" class="stdBlue priceDP"
+                        style="position: absolute;top: 43%;right: 10%;">100</span>
+                    <span class="stdBlue priceDP" style="position: absolute;top: 50.5%;right: 10%;color:red">1200</span>
+                    <span id="rem_dp" class="stdBlue priceDP"
+                        style="position: absolute;top: 58%;right: 10%;color:red">1100</span>
+                </div>
+            </div>
+            <div id="confirm_row"
+                style="display: flex;flex-direction: row;height: 15%;flex-grow: 1;background-color: transparent;background-image: url('images/tpass_confirm_row.svg');background-size: 100%;align-items: center;">
+                <button id="btn_next" class="btnNext" onclick="next()" style="margin-left: 50%;"></button>
+                <button class="btnCancel" onclick="goBack()" style="margin-left: 10%;"></button>
+            </div>
+        </div>
+        <div style="height: 5.5%;display: flex;flex-direction: row;">
+            <div style="width: 50%;text-align: left;margin-top: 1.5dvh;">
+                <span
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: black;">v3.0.6/
+                    v30</span>
+            </div>
+            <div style="width: 50%;text-align: right;margin-top: 1.5dvh;">
+                <span id="date"
+                    style="font-size: 3.5dvh;font-family: Helvetica, Arial, sans-serif;font-weight: bold;color: #1b0b97;"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var initialAmount = undefined
+        var inserted = 0
+        var coins = 20
+        var bills = 15
+        var coinsList = [1, 5, 10, 20, 50]
+        var billsList = [100, 200, 500, 1000]
+
+
+        function setDt() {
+            var d = new Date()
+            document.getElementById("date").innerHTML = d.getFullYear() + "/" + twoNums(d.getMonth() + 1) + "/" + twoNums(d.getDate()) + " " + twoNums(d.getHours()) + ":" + twoNums(d.getMinutes()) + ":" + twoNums(d.getSeconds())
+        }
+        setDt()
+
+        function twoNums(num) {
+            if (num.toString().length == 1) {
+                return "0" + num.toString()
+            } else {
+                return num.toString()
+            }
+        }
+        function goBack() {
+            window.parent.touchSound()
+            setTimeout(
+                function () {
+                    window.location.href = "topup_cancel.html"
+                }
+                , 500)
+        }
+        setInterval(setDt, 1000)
+
+        async function removeCard() {
+            const url1 = `home.html`;
+            const url2 = `pages/home.html`;
+
+            try {
+                const res = await fetch(url1, { method: "HEAD" });
+
+                if (res.ok) {
+                    window.location.href = url1;
+                } else {
+                    throw new Error("not ok");
+                }
+            } catch (e) {
+                window.location.href = url2;
+            }
+        }
+
+        function triggerConfirm(status) {
+            if (status) {
+                document.getElementById("confirm_row").style.backgroundImage = "url('images/tpass_confirm_row.svg')"
+                document.getElementById("confirm_row").style.backgroundSize = "100%"
+                document.getElementById("btn_next").style.opacity = 1
+                document.getElementById("btn_next").disabled = false
+            } else {
+                document.getElementById("confirm_row").style.backgroundImage = "none"
+                document.getElementById("btn_next").style.opacity = 0
+                document.getElementById("btn_next").disabled = true
+            }
+        }
+
+        async function insertAmount(amount) {
+            if (coinsList.includes(parseInt(amount))) {
+                if (coins > 0)
+                    coins--
+                else
+                    throw new Error("Coins unavailable")
+            } else if (billsList.includes(parseInt(amount))) {
+                if (bills > 0)
+                    bills--
+                else
+                    throw new Error("Bills unavailable")
+            } else {
+                throw new Error("Invalid currency")
+            }
+
+            if (parseInt(amount) > 0) {
+                inserted += parseInt(amount)
+            } else {
+                return
+            }
+            document.getElementById("inserted_dp").innerText = inserted
+            document.getElementById("rem_dp").innerText = inserted > 1200 ? 0 : (1200 - inserted)
+            if (inserted >= 1200) {
+                triggerConfirm(true)
+            }
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        initialAmount = parseInt(params.get("remaining"))
+        document.getElementById("initial_amount_dp").innerText = params.get("remaining")
+        triggerConfirm(false)
+        insertAmount(parseInt(params.get("amount")))
+        // TODO: Randomise stuff
+
+        function next () {
+            window.parent.touchSound()
+        }
+    </script>
+</body>
+
+</html>
