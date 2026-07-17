@@ -13,11 +13,75 @@
         dialog {
             border-radius: 15px;
             font-family: Helvetica, Arial, sans-serif;
-            border: none;
+            border: 5px solid white;
+            background: #49b4e2;
+            color: #282472
         }
 
         dialog::backdrop {
             background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .cashBtn {
+            background: none;
+            border: 2px solid white;
+            padding: 0;
+        }
+
+        .cashBtn:active {
+            filter: brightness(0.5);
+        }
+
+        .coin {
+            border-radius: 100%;
+            width: 75px;
+            height: 75px;
+        }
+
+
+        .coin img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .bill {
+            width: 178.5px;
+            height: 75px;
+        }
+
+        .bill img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .closeBtn {
+            width: 100%;
+            font-size: large;
+            font-weight: bold;
+            background: #282472;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 100000px;
+        }
+
+        .closeBtn:active {
+            background: white;
+            color: #282472;
+        }
+
+        .sensorZone {
+            border: none;
+            width: 250px;
+            height: 150px;
+        }
+
+        .sensorZone img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -25,7 +89,8 @@
 <body style="background: black;overflow: hidden;">
     <audio id="osc" src="audio/process/touch.mp3" hidden></audio>
     <audio id="narrator" hidden></audio>
-    <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">投幣 / 放置卡片</button>
+    <button onclick="triggerDialog(true)" style="position: absolute;top: 0;left: 0;opacity: 0.5;padding: 10px;">投幣 /
+        放置卡片</button>
     <div style="display: flex;flex-direction: row;margin-top: 5dvh;margin-bottom: 5dvh;">
         <div
             style="background: black;aspect-ratio: 4/3;height: 90dvh;display: flex;margin-left: calc((100vw - (90dvh * 4 / 3))/2);">
@@ -34,25 +99,54 @@
     </div>
     <dialog id="tools">
         <h1>票卡感應區</h1>
-        <label for="card_remaining">卡片餘額</label>
-        <input id="card_remaining" type="number" />
-        <br>
-        <button id="place_card" onclick="placeCard(document.getElementById('card_remaining').value)">放置卡片</button>
-        <button id="remove_card" onclick="removeCard()" disabled>移除卡片</button>
+        <div style="display: flex;flex-direction: row;">
+            <div style="display: flex;flex-direction: column;">
+
+                <label for="card_remaining" style="font-size: larger;">卡片餘額</label>
+                <input id="card_remaining" type="number" style="font-size: larger;padding: 10px;" placeholder="請輸入餘額"/>
+            </div>
+            <div>
+                <button class="cashBtn sensorZone" onclick="triggerCard(!cardPlaced)">
+                    <img id="trigger_card_img" src="pages/images/sensor_zone_blank.svg" />
+                </button>
+            </div>
+        </div>
         <br>
         <h1>投入現金</h1>
-        <button onclick="insertAmount(1)">1</button>
-        <button onclick="insertAmount(5)">5</button>
-        <button onclick="insertAmount(10)">10</button>
-        <button onclick="insertAmount(20)">20</button>
-        <button onclick="insertAmount(50)">50</button>
-        <button onclick="insertAmount(100)">100</button>
-        <button onclick="insertAmount(200)">200</button>
-        <button onclick="insertAmount(500)">500</button>
-        <button onclick="insertAmount(1000)">1000</button>
+        <button class="cashBtn coin" onclick="insertAmount(1)">
+            <img src="pages/images/coins/1.png" />
+        </button>
+        <button class="cashBtn coin" onclick="insertAmount(5)">
+            <img src="pages/images/coins/5.png" />
+        </button>
+        <button class="cashBtn coin" onclick="insertAmount(10)">
+            <img src="pages/images/coins/10.png" />
+        </button>
+        <button class="cashBtn coin" onclick="insertAmount(20)">
+            <img src="pages/images/coins/20.png" />
+        </button>
+        <button class="cashBtn coin" onclick="insertAmount(50)">
+            <img src="pages/images/coins/50.png" />
+        </button>
+        <br>
+        <button class="cashBtn bill" onclick="insertAmount(100)">
+            <img src="pages/images/bills/100.png" />
+        </button>
+        <button class="cashBtn bill" onclick="insertAmount(200)">
+            <img src="pages/images/bills/200.png" />
+        </button>
+        <button class="cashBtn bill" onclick="insertAmount(500)">
+            <img src="pages/images/bills/500.png" />
+        </button>
+        <button class="cashBtn bill" onclick="insertAmount(1000)">
+            <img src="pages/images/bills/1000.png" />
+        </button>
+        <button class="cashBtn bill" onclick="insertAmount(2000)">
+            <img src="pages/images/bills/2000.png" />
+        </button>
         <br>
         <br>
-        <button onclick="triggerDialog(false)" style="padding: 10px;">關閉</button>
+        <button onclick="triggerDialog(false)" class="closeBtn">關閉</button>
     </dialog>
     <script>
         var cardPlaced = false
@@ -84,6 +178,11 @@
         }
 
         function placeCard(amount) {
+            if (amount.length <= 0) {
+                alert("請輸入餘額")
+                throw Error("No value")
+                return
+            }
             try {
                 parseInt(amount)
             } catch (e) {
@@ -97,8 +196,6 @@
                 try {
                     document.getElementById("screen").contentWindow.placeCard(amount)
                     cardPlaced = true
-                    document.getElementById("place_card").disabled = true
-                    document.getElementById("remove_card").disabled = false
                     document.getElementById("card_remaining").readOnly = true
                 } catch (e) {
                     alert("Illegal action")
@@ -114,8 +211,6 @@
                 try {
                     document.getElementById("screen").contentWindow.removeCard()
                     cardPlaced = false
-                    document.getElementById("place_card").disabled = false
-                    document.getElementById("remove_card").disabled = true
                     document.getElementById("card_remaining").readOnly = false
                 } catch (e) {
                     alert("Illegal action")
@@ -124,7 +219,15 @@
             triggerDialog(false)
         }
 
-        // Single-journey
+        function triggerCard(status) {
+            if (status) {
+                placeCard(document.getElementById("card_remaining").value)
+                document.getElementById("trigger_card_img").src = "pages/images/sensor_zone_card.svg"
+            } else {
+                removeCard()
+                document.getElementById("trigger_card_img").src = "pages/images/sensor_zone_blank.svg"
+            }
+        }
     </script>
 </body>
 
